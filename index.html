@@ -19,47 +19,51 @@
     <link rel="stylesheet" href="./static/css/time-estimates.css">
     <style>
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --primary-light: #60a5fa;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --text-dark: #334155;
+            --primary: #ff00ff; /* Neon pink */
+            --primary-dark: #cc00cc;
+            --primary-light: #ff66ff;
+            --secondary: #00ffff; /* Cyan */
+            --dark: #120458; /* Deep purple */
+            --light: #1a0133; /* Dark purple background */
+            --text-dark: #ffffff; /* White text */
             --text-light: #f1f5f9;
-            --success: #22c55e;
-            --warning: #eab308;
-            --danger: #ef4444;
-            --border: #e2e8f0;
-            --accent: #8b5cf6;
-            --accent-light: #a78bfa;
-            --accent-dark: #7c3aed;
-            --bg-light: #f1f5f9;
-            --neu-shadow-light: 5px 5px 10px #d1d9e6, -5px -5px 10px #ffffff;
-            --neu-shadow-inset-light: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
-            --neu-shadow-dark: 5px 5px 10px #161f2c, -5px -5px 10px #263340;
-            --neu-shadow-inset-dark: inset 2px 2px 5px #161f2c, inset -2px -2px 5px #263340;
+            --success: #00ffaa; /* Neon green */
+            --warning: #ffff00; /* Neon yellow */
+            --danger: #ff0066; /* Hot pink */
+            --border: #ff00ff; /* Neon pink */
+            --accent: #00ffff; /* Cyan */
+            --accent-light: #66ffff;
+            --accent-dark: #00cccc;
+            --bg-light: #1a0133; /* Dark purple background */
+            --neu-shadow-light: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; /* Neon glow */
+            --neu-shadow-inset-light: inset 0 0 10px #00ffff, inset 0 0 20px #00ffff;
+            --neu-shadow-dark: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            --neu-shadow-inset-dark: inset 0 0 10px #00ffff, inset 0 0 20px #00ffff;
             --transition: all 0.3s ease;
+            --grid-color: rgba(255, 0, 255, 0.5); /* For grid background */
+            --grid-size: 30px; /* Grid cell size */
+            --grid-line: 1px; /* Grid line thickness */
         }
 
         .dark-mode {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --primary-light: #60a5fa;
-            --secondary: #34d399;
-            --dark: #f8fafc;
-            --light: #0f172a;
-            --text-dark: #e2e8f0;
-            --text-light: #1e293b;
-            --border: #1e293b;
-            --accent: #a78bfa;
-            --accent-light: #c4b5fd;
-            --accent-dark: #8b5cf6;
-            --bg-light: #1e293b;
-            --neu-shadow-light: 5px 5px 10px #0c111f, -5px -5px 10px #121d35;
-            --neu-shadow-inset-light: inset 2px 2px 5px #0c111f, inset -2px -2px 5px #121d35;
-            --neu-shadow-dark: 5px 5px 10px #0c111f, -5px -5px 10px #121d35;
-            --neu-shadow-inset-dark: inset 2px 2px 5px #0c111f, inset -2px -2px 5px #121d35;
+            --primary: #00ffff; /* Cyan */
+            --primary-dark: #00cccc;
+            --primary-light: #66ffff;
+            --secondary: #ff00ff; /* Neon pink */
+            --dark: #ffffff; /* White */
+            --light: #000033; /* Darker blue */
+            --text-dark: #ffffff; /* White text */
+            --text-light: #00ffff; /* Cyan text */
+            --border: #00ffff; /* Cyan */
+            --accent: #ff00ff; /* Neon pink */
+            --accent-light: #ff66ff;
+            --accent-dark: #cc00cc;
+            --bg-light: #000033; /* Darker blue background */
+            --neu-shadow-light: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; /* Cyan glow */
+            --neu-shadow-inset-light: inset 0 0 10px #ff00ff, inset 0 0 20px #ff00ff;
+            --neu-shadow-dark: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            --neu-shadow-inset-dark: inset 0 0 10px #ff00ff, inset 0 0 20px #ff00ff;
+            --grid-color: rgba(0, 255, 255, 0.5); /* For grid background */
         }
 
         * {
@@ -69,12 +73,73 @@
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'VT323', monospace;
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Vaporwave grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(var(--grid-color) var(--grid-line), transparent var(--grid-line)),
+                linear-gradient(90deg, var(--grid-color) var(--grid-line), transparent var(--grid-line));
+            background-size: var(--grid-size) var(--grid-size);
+            background-position: center center;
+            z-index: -1;
+            opacity: 0.5;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transform: rotateX(60deg) translateZ(-100px);
+            animation: grid-move 20s linear infinite;
+        }
+
+        @keyframes grid-move {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 var(--grid-size);
+            }
+        }
+
+        /* Sun/moon in the background */
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            top: 10%;
+            right: -100px;
+            z-index: -2;
+            box-shadow: 0 0 50px var(--primary), 0 0 100px var(--accent);
+            opacity: 0.7;
+            animation: sun-pulse 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes sun-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.9;
+            }
         }
 
         .container {
@@ -84,13 +149,15 @@
         }
 
         header {
-            background-color: var(--light);
+            background-color: rgba(26, 1, 51, 0.8); /* Semi-transparent dark purple */
             color: var(--text-dark);
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: var(--neu-shadow-light);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
         }
 
         .header-content {
@@ -109,22 +176,36 @@
         }
 
         .logo-initials {
-            font-size: 1.5rem;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 1.8rem;
             font-weight: bold;
             color: white;
-            background-color: var(--accent);
-            width: 40px;
-            height: 40px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
             transition: var(--transition);
+            animation: logo-glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 5px white, 0 0 10px white;
+        }
+
+        @keyframes logo-glow {
+            0% {
+                box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
+                text-shadow: 0 0 5px white, 0 0 10px white;
+            }
+            100% {
+                box-shadow: 0 0 15px var(--primary), 0 0 30px var(--accent), 0 0 45px var(--primary);
+                text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px var(--accent);
+            }
         }
 
         .dark-mode .logo-initials {
-            background-color: var(--accent-dark);
+            background: linear-gradient(45deg, var(--accent), var(--primary));
         }
 
         .brand-tagline {
@@ -150,12 +231,33 @@
             border-radius: 0.75rem;
             transition: var(--transition);
             box-shadow: var(--neu-shadow-light);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
         }
 
         nav a:hover {
-            box-shadow: var(--neu-shadow-inset-light);
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
             color: var(--accent);
             transform: translateY(-2px);
+            text-shadow: 0 0 5px var(--accent);
         }
 
         nav a:active {
@@ -164,29 +266,40 @@
         }
 
         .mode-toggle {
-            background: var(--light);
+            background: linear-gradient(45deg, var(--primary-dark), var(--accent-dark));
             border: none;
-            color: var(--text-dark);
+            color: white;
             font-size: 1.2rem;
             cursor: pointer;
             padding: 0.75rem;
             border-radius: 50%;
             transition: var(--transition);
-            box-shadow: var(--neu-shadow-light);
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
             width: 50px;
             height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+            animation: mode-toggle-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes mode-toggle-glow {
+            0% {
+                box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
+            }
+            100% {
+                box-shadow: 0 0 15px var(--primary), 0 0 30px var(--accent), 0 0 45px var(--primary);
+            }
         }
 
         .mode-toggle:hover {
-            box-shadow: var(--neu-shadow-inset-light);
-            color: var(--accent);
+            background: linear-gradient(45deg, var(--accent-dark), var(--primary-dark));
+            color: white;
+            transform: rotate(180deg);
         }
 
         .mode-toggle:active {
-            transform: scale(0.95);
+            transform: scale(0.95) rotate(180deg);
         }
 
         .mobile-menu-btn {
@@ -217,16 +330,34 @@
             position: relative;
             overflow: hidden;
             border-radius: 0 0 30px 30px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 0 20px var(--primary), 0 0 40px var(--accent);
+        }
+
+        /* Add retro sun to hero */
+        .retro-sun {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            background: linear-gradient(to top, var(--primary), transparent);
+            border-radius: 150px 150px 0 0;
+            bottom: -50px;
+            left: calc(50% - 150px);
+            opacity: 0.7;
+            z-index: 0;
+            box-shadow: 0 0 30px var(--primary);
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 3rem;
             margin-bottom: 1rem;
             line-height: 1.2;
             position: relative;
             z-index: 1;
             animation: fadeInUp 1s ease;
+            text-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent), 0 0 30px var(--primary);
+            letter-spacing: 2px;
+            color: white;
         }
 
         .hero p {
@@ -297,36 +428,83 @@
         }
 
         .btn-primary {
-            background-color: white;
-            color: var(--accent);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
         .btn-primary:hover {
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px var(--primary), 0 0 30px var(--accent), 0 0 45px var(--primary);
             transform: translateY(-3px);
+            text-shadow: 0 0 5px white;
         }
 
         .btn-primary:active {
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
             transform: translateY(-1px);
         }
 
         .btn-secondary {
             background-color: transparent;
-            border: 2px solid white;
+            border: 2px solid var(--accent);
             color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            left: 100%;
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px var(--accent), 0 0 30px var(--primary);
             transform: translateY(-3px);
+            text-shadow: 0 0 5px var(--accent);
         }
 
         .btn-secondary:active {
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px var(--accent);
             transform: translateY(-1px);
         }
 
@@ -359,11 +537,14 @@
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-family: 'Permanent Marker', cursive;
+            font-size: 2.5rem;
             display: inline-block;
             padding-bottom: 0.5rem;
             position: relative;
             color: var(--text-dark);
+            text-shadow: 0 0 5px var(--primary), 0 0 10px var(--accent);
+            letter-spacing: 2px;
         }
 
         .section-title h2::after {
@@ -372,10 +553,11 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 100px;
             height: 3px;
-            background-color: var(--accent);
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
             border-radius: 3px;
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
         }
 
         .card {
@@ -1960,6 +2142,85 @@
             to { transform: translateX(100%); opacity: 0; }
         }
 
+        /* Vaporwave Audio Player Styles */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, var(--primary-dark), var(--accent-dark));
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .audio-player:hover {
+            box-shadow: 0 0 15px var(--primary), 0 0 30px var(--accent), 0 0 45px var(--primary);
+        }
+
+        .audio-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .audio-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .audio-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .audio-title {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .audio-progress {
+            flex: 1;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .audio-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: white;
+            border-radius: 5px;
+            transition: width 0.1s linear;
+        }
+
         .alert-progress {
             position: absolute;
             bottom: 0;
@@ -2511,6 +2772,25 @@
     <!-- Confetti Container -->
     <div class="confetti-container" id="confettiContainer"></div>
 
+    <!-- Vaporwave Audio Player -->
+    <div class="audio-player" id="audioPlayer">
+        <button class="audio-toggle" id="audioToggle">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <div class="audio-info">
+            <div class="audio-title">Vaporwave Aesthetics</div>
+            <div class="audio-controls">
+                <div class="audio-progress">
+                    <div class="audio-progress-bar" id="audioProgressBar"></div>
+                </div>
+            </div>
+        </div>
+        <audio id="backgroundAudio" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_c8e9124485.mp3?filename=synthwave-background-music-vlog-gaming-music-chillwave-lofi-hip-hop-140997.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -2544,6 +2824,7 @@
     </a>
 
     <section class="hero">
+        <div class="retro-sun"></div>
         <div class="bg-animation">
             <span style="top:80%; left:20%; animation-delay: 0s;"></span>
             <span style="top:70%; left:50%; animation-delay: 0.2s;"></span>
@@ -3650,7 +3931,7 @@
     <script type="module" src="./static/js/main-modules.js"></script>
     <script type="module" src="./static/js/tax-filing-app.js"></script>
 
-    <!-- Non-module script for dark mode toggle -->
+    <!-- Non-module script for dark mode toggle and audio player -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Check for saved theme preference
@@ -3670,6 +3951,38 @@
                     const isDarkMode = document.body.classList.contains('dark-mode');
                     localStorage.setItem('darkMode', isDarkMode);
                     this.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                });
+            }
+
+            // Audio player functionality
+            const audioPlayer = document.getElementById('audioPlayer');
+            const audioToggle = document.getElementById('audioToggle');
+            const backgroundAudio = document.getElementById('backgroundAudio');
+            const audioProgressBar = document.getElementById('audioProgressBar');
+
+            // Set initial volume
+            if (backgroundAudio) {
+                backgroundAudio.volume = 0.3;
+            }
+
+            // Toggle audio play/pause
+            if (audioToggle && backgroundAudio) {
+                audioToggle.addEventListener('click', function() {
+                    if (backgroundAudio.paused) {
+                        backgroundAudio.play();
+                        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    } else {
+                        backgroundAudio.pause();
+                        audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    }
+                });
+            }
+
+            // Update progress bar
+            if (backgroundAudio && audioProgressBar) {
+                backgroundAudio.addEventListener('timeupdate', function() {
+                    const progress = (backgroundAudio.currentTime / backgroundAudio.duration) * 100;
+                    audioProgressBar.style.width = progress + '%';
                 });
             }
         });
