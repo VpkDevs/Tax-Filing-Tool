@@ -164,15 +164,24 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .nav-menu {
+            flex: 1; /* Take up available space */
+            display: flex;
+            justify-content: center; /* Center the navigation */
+            margin: 0 1rem; /* Add margin on the sides */
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Reduced font size */
             font-weight: bold;
             color: var(--text-dark);
+            padding-right: 0.5rem; /* Added padding to separate from nav */
         }
 
         .logo-initials {
@@ -220,22 +229,26 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 0.5rem; /* Reduced gap between nav items */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center; /* Center the navigation items */
         }
 
         nav a {
             color: var(--text-dark);
             text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem 0.75rem;
+            padding: 0.4rem 0.6rem; /* Reduced padding */
             border-radius: 0.75rem;
             transition: var(--transition);
             box-shadow: var(--neu-shadow-light);
             position: relative;
             overflow: hidden;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
+            font-size: 0.9rem; /* Reduced font size */
+            letter-spacing: 0.5px; /* Reduced letter spacing */
             text-transform: uppercase;
+            margin: 0.2rem; /* Added small margin */
+            display: inline-block; /* Ensure proper sizing */
         }
 
         nav a::before {
@@ -372,16 +385,17 @@
         .cta-buttons {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 2rem; /* Increased from 1rem to 2rem */
             flex-wrap: wrap;
             position: relative;
             z-index: 1;
             animation: fadeInUp 1s ease 0.4s both;
+            margin-bottom: 1rem; /* Added margin at the bottom */
         }
 
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem; /* Increased padding */
             border-radius: 1rem;
             text-decoration: none;
             font-weight: 600;
@@ -389,9 +403,11 @@
             transition: var(--transition);
             cursor: pointer;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem; /* Slightly larger font */
             position: relative;
             overflow: hidden;
+            min-width: 200px; /* Added minimum width */
+            margin: 0.5rem; /* Added margin around buttons */
         }
 
         .btn::after {
@@ -2145,7 +2161,7 @@
         /* Vaporwave Audio Player Styles */
         .audio-player {
             position: fixed;
-            bottom: 20px;
+            bottom: 80px; /* Increased from 20px to avoid overlapping */
             left: 20px;
             background: linear-gradient(45deg, var(--primary-dark), var(--accent-dark));
             border-radius: 50px;
