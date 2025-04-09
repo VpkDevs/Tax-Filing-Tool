@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Web Toolbox</h1>
+    <p>Your one-stop destination for useful tools and fun games</p>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <h2>Tools</h2>
+        <p>Access a variety of helpful utilities</p>
+        <a href="{{ url_for('tools.tools') }}" class="btn">Explore Tools</a>
+    </div>
+    
+    <div class="feature-card">
+        <h2>Games</h2>
+        <p>Take a break with some fun games</p>
+        <a href="{{ url_for('games.games') }}" class="btn">Play Games</a>
+    </div>
+</div>
+{% endblock %}

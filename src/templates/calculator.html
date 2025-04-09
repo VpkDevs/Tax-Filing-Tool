@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% block title %}Scientific Calculator{% endblock %}
+
+{% block content %}
+<div class="calculator-intro">
+    <h2>Financial Calculator</h2>
+    <p>Select a calculation mode below or hover over the ℹ️ icon for detailed guides.</p>
+</div>
+
+<div class="calculator-container">
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="expression" readonly>
+            <div id="result"></div>
+        </div>
+
+        <div class="calculator-buttons">
+            <!-- Memory Operations -->
+            <button class="mem-btn" onclick="memoryOperation('MC')">MC</button>
+            <button class="mem-btn" onclick="memoryOperation('MR')">MR</button>
+            <button class="mem-btn" onclick="memoryOperation('M+')">M+</button>
+            <button class="mem-btn" onclick="memoryOperation('M-')">M-</button>
+
+            <!-- Scientific Functions -->
+            <button class="func-btn" onclick="insertFunction('sin')">sin</button>
+            <button class="func-btn" onclick="insertFunction('cos')">cos</button>
+            <button class="func-btn" onclick="insertFunction('tan')">tan</button>
+            <button class="func-btn" onclick="insertFunction('log')">log</button>
+
+            <button class="func-btn" onclick="insertFunction('asin')">asin</button>
+            <button class="func-btn" onclick="insertFunction('acos')">acos</button>
+            <button class="func-btn" onclick="insertFunction('atan')">atan</button>
+            <button class="func-btn" onclick="insertFunction('log10')">log₁₀</button>
+
+            <button class="func-btn" onclick="insertFunction('sinh')">sinh</button>
+            <button class="func-btn" onclick="insertFunction('cosh')">cosh</button>
+            <button class="func-btn" onclick="insertFunction('tanh')">tanh</button>
+            <button class="func-btn" onclick="insertFunction('sqrt')">√</button>
+
+            <!-- Constants -->
+            <button class="const-btn" onclick="insertConstant('pi')">π</button>
+            <button class="const-btn" onclick="insertConstant('e')">e</button>
+            <button class="func-btn" onclick="insertFunction('factorial')">n!</button>
+            <button class="op-btn" onclick="insertOperator('^')">^</button>
+
+            <!-- Numbers and Basic Operations -->
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button class="op-btn" onclick="insertOperator('/')">/</button>
+
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button class="op-btn" onclick="insertOperator('*')">×</button>
+
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button class="op-btn" onclick="insertOperator('-')">-</button>
+
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button class="equals-btn" onclick="calculate()">=</button>
+            <button class="op-btn" onclick="insertOperator('+')">+</button>
+
+            <!-- Additional Functions -->
+            <button class="clear-btn" onclick="clearDisplay()">C</button>
+            <button class="clear-btn" onclick="clearEntry()">CE</button>
+            <button class="func-btn" onclick="insertFunction('abs')">|x|</button>
+            <button onclick="backspace()">⌫</button>
+        </div>
+    </div>
+
+    <div class="calculator-history">
+        <div class="history-header">
+            <h3>History</h3>
+            <div class="history-controls">
+                <select id="history-filter">
+                    <option value="">All Categories</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Loan">Loan</option>
+                    <option value="Investment">Investment</option>
+                    <option value="Retirement">Retirement</option>
+                    <option value="Business">Business</option>
+                </select>
+                <button id="refresh-history" title="Refresh History">↻</button>
+            </div>
+        </div>
+        <ul id="history-list"></ul>
+    </div>
+</div>
+
+<div class="quick-reference">
+    <h3>Quick Reference</h3>
+    <div class="reference-grid">
+        <div class="reference-item">
+            <h4>Investment</h4>
+            <ul>
+                <li>Compound Interest: Growth with reinvested returns</li>
+                <li>ROI: Measure investment profitability</li>
+                <li>Break Even: Time to recover investment</li>
+            </ul>
+        </div>
+        <div class="reference-item">
+            <h4>Business</h4>
+            <ul>
+                <li>Markup: Adding profit margin to cost</li>
+                <li>Margin: Profit percentage of price</li>
+                <li>Cost Plus: Price based on cost + markup</li>
+            </ul>
+        </div>
+        <!-- Add more reference sections -->
+    </div>
+</div>
+
+<div class="calculator-tabs">
+    <button class="tab-btn active" onclick="openTab(event, 'basic-financial')">Basic Financial</button>
+    <button class="tab-btn" onclick="openTab(event, 'loan-analysis')">Loan Analysis</button>
+    <button class="tab-btn" onclick="openTab(event, 'investment')">Investment</button>
+    <button class="tab-btn" onclick="openTab(event, 'retirement')">Retirement</button>
+    <button class="tab-btn" onclick="openTab(event, 'business')">Business</button>
+    <button class="tab-btn" onclick="openTab(event, 'tax')">Tax</button>
+    <button class="tab-btn" onclick="openTab(event, 'advanced')">Advanced</button>
+</div>
+
+<div id="basic-financial" class="tab-content" style="display: block;">
+    <div class="financial-functions">
+        <h4>Investment Analysis</h4>
+        <button class="fin-btn" onclick="insertFunction('compound_interest')">Compound Interest</button>
+        <button class="fin-btn" onclick="insertFunction('roi')">ROI</button>
+        <button class="fin-btn" onclick="insertFunction('payback_period')">Payback Period</button>
+        <button class="fin-btn" onclick="insertFunction('break_even')">Break Even</button>
+
+        <h4>Business Metrics</h4>
+        <button class="fin-btn" onclick="insertFunction('markup')">Markup</button>
+        <button class="fin-btn" onclick="insertFunction('margin')">Margin</button>
+        <button class="fin-btn" onclick="insertFunction('discount')">Discount</button>
+
+        <h4>Real Estate</h4>
+        <button class="fin-btn" onclick="insertFunction('mortgage')">Mortgage</button>
+        <button class="fin-btn" onclick="insertFunction('rent_ratio')">Rent Ratio</button>
+        <button class="fin-btn" onclick="insertFunction('cap_rate')">Cap Rate</button>
+
+        <h4>Tax & Depreciation</h4>
+        <button class="fin-btn" onclick="insertFunction('after_tax')">After Tax</button>
+        <button class="fin-btn" onclick="insertFunction('sales_tax')">Sales Tax</button>
+        <button class="fin-btn" onclick="insertFunction('straight_line')">Straight-line Dep.</button>
+
+        <h4>Project Management</h4>
+        <button class="fin-btn" onclick="insertFunction('earned_value')">Earned Value</button>
+        <button class="fin-btn" onclick="insertFunction('cost_variance')">Cost Variance</button>
+        <button class="fin-btn" onclick="insertFunction('schedule_variance')">Schedule Variance</button>
+
+        <h4>Manufacturing</h4>
+        <button class="fin-btn" onclick="insertFunction('total_cost')">Total Cost</button>
+        <button class="fin-btn" onclick="insertFunction('unit_cost')">Unit Cost</button>
+        <button class="fin-btn" onclick="insertFunction('overhead_rate')">Overhead Rate</button>
+
+        <h4>Pricing & Currency</h4>
+        <button class="fin-btn" onclick="insertFunction('cost_plus')">Cost Plus</button>
+        <button class="fin-btn" onclick="insertFunction('target_price')">Target Price</button>
+        <button class="fin-btn" onclick="insertFunction('exchange')">Exchange Rate</button>
+    </div>
+</div>
+
+<div id="loan-analysis" class="tab-content">
+    <div class="financial-functions">
+        <h4>Loan Comparison</h4>
+        <button class="fin-btn" onclick="insertFunction('loan_comparison')">Compare Loans</button>
+        <button class="fin-btn" onclick="insertFunction('extra_payment_impact')">Extra Payment Impact</button>
+        <button class="fin-btn" onclick="insertFunction('refinance_analysis')">Refinance Analysis</button>
+        <button class="fin-btn" onclick="insertFunction('amortization')">Amortization Payment</button>
+
+        <h4>Loan Calculators</h4>
+        <button class="fin-btn" onclick="showGuidedCalculator('loan-payment')">Loan Payment Calculator</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('loan-term')">Loan Term Calculator</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('loan-affordability')">Loan Affordability</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('debt-consolidation')">Debt Consolidation</button>
+    </div>
+</div>
+
+<div id="investment" class="tab-content">
+    <div class="financial-functions">
+        <h4>Portfolio Analysis</h4>
+        <button class="fin-btn" onclick="insertFunction('portfolio_return')">Portfolio Return</button>
+        <button class="fin-btn" onclick="insertFunction('portfolio_risk')">Portfolio Risk</button>
+        <button class="fin-btn" onclick="insertFunction('tax_equivalent_yield')">Tax-Equivalent Yield</button>
+        <button class="fin-btn" onclick="insertFunction('dollar_cost_averaging')">Dollar-Cost Averaging</button>
+
+        <h4>Investment Strategies</h4>
+        <button class="fin-btn" onclick="showGuidedCalculator('investment-goal')">Investment Goal</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('asset-allocation')">Asset Allocation</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('rebalancing')">Portfolio Rebalancing</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('investment-comparison')">Investment Comparison</button>
+    </div>
+</div>
+
+<div id="retirement" class="tab-content">
+    <div class="financial-functions">
+        <h4>Retirement Planning</h4>
+        <button class="fin-btn" onclick="insertFunction('retirement_savings_goal')">Retirement Savings Goal</button>
+        <button class="fin-btn" onclick="insertFunction('withdrawal_analysis')">Withdrawal Analysis</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('retirement-income')">Retirement Income</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('social-security')">Social Security Optimizer</button>
+
+        <h4>Retirement Calculators</h4>
+        <button class="fin-btn" onclick="showGuidedCalculator('retirement-age')">Retirement Age</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('required-savings')">Required Savings Rate</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('retirement-shortfall')">Retirement Shortfall</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('retirement-withdrawal')">Safe Withdrawal Rate</button>
+    </div>
+</div>
+
+<div id="business" class="tab-content">
+    <div class="financial-functions">
+        <h4>Business Valuation</h4>
+        <button class="fin-btn" onclick="insertFunction('dcf_valuation')">DCF Valuation</button>
+        <button class="fin-btn" onclick="insertFunction('comparable_valuation')">Comparable Valuation</button>
+        <button class="fin-btn" onclick="insertFunction('startup_valuation')">Startup Valuation</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('business-valuation')">Business Valuation Tool</button>
+
+        <h4>Business Metrics</h4>
+        <button class="fin-btn" onclick="showGuidedCalculator('break-even-analysis')">Break-Even Analysis</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('profit-margin')">Profit Margin Analysis</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('cash-flow')">Cash Flow Projection</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('business-loan')">Business Loan Analysis</button>
+    </div>
+</div>
+
+<div id="tax" class="tab-content">
+    <div class="financial-functions">
+        <h4>Tax Optimization</h4>
+        <button class="fin-btn" onclick="insertFunction('tax_bracket_optimization')">Tax Bracket Optimization</button>
+        <button class="fin-btn" onclick="insertFunction('capital_gains_harvesting')">Capital Gains Harvesting</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('tax-strategy')">Tax Strategy Planner</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('tax-loss-harvesting')">Tax-Loss Harvesting</button>
+
+        <h4>Tax Calculators</h4>
+        <button class="fin-btn" onclick="showGuidedCalculator('income-tax')">Income Tax Calculator</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('capital-gains-tax')">Capital Gains Tax</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('retirement-tax')">Retirement Account Tax</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('estate-tax')">Estate Tax Planning</button>
+    </div>
+</div>
+
+<div id="advanced" class="tab-content">
+    <div class="financial-functions">
+        <h4>Scenario Analysis</h4>
+        <button class="fin-btn" onclick="insertFunction('monte_carlo_simulation')">Monte Carlo Simulation</button>
+        <button class="fin-btn" onclick="insertFunction('sensitivity_analysis')">Sensitivity Analysis</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('scenario-comparison')">Scenario Comparison</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('what-if-analysis')">What-If Analysis</button>
+
+        <h4>Advanced Financial</h4>
+        <button class="fin-btn" onclick="showGuidedCalculator('option-pricing')">Option Pricing</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('bond-pricing')">Bond Pricing</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('risk-analysis')">Risk Analysis</button>
+        <button class="fin-btn" onclick="showGuidedCalculator('financial-ratios')">Financial Ratios</button>
+    </div>
+</div>
+
+<!-- Guided Calculator Modal -->
+<div id="guided-calculator-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="guided-calculator-title">Calculator</h3>
+
+        <div id="guided-calculator-content">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+
+        <div class="calculator-navigation">
+            <button id="prev-step" class="nav-btn">Previous</button>
+            <span id="step-indicator">Step 1 of 3</span>
+            <button id="next-step" class="nav-btn">Next</button>
+        </div>
+
+        <div class="calculator-actions">
+            <button id="calculate-result" class="action-btn">Calculate</button>
+            <button id="save-to-expression" class="action-btn">Use Result</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/calculator.js') }}"></script>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,55 @@
+/* Time Estimates Bar Styles */
+
+.time-estimates-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--light);
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 900;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    color: var(--text-dark);
+}
+
+.time-estimate {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-estimate i {
+    color: var(--accent);
+}
+
+.progress-percent-container {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+#total-time-spent,
+#estimated-time-remaining,
+#progress-percent {
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .time-estimates-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        align-items: flex-start;
+    }
+}
+
+/* Dark mode adjustments */
+.dark-mode .time-estimates-bar {
+    background-color: var(--light);
+    border-color: var(--border);
+}

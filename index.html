@@ -1,0 +1,3639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2021 Recovery Rebate Credit Maximizer | Automated Tax Filing</title>
+    <meta name="description" content="Maximize your 2021 Recovery Rebate Credit with our automated tax filing tool. Get your stimulus payment quickly and easily.">
+    <meta name="keywords" content="tax filing, recovery rebate credit, stimulus payment, tax return, IRS">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./static/css/modules/walkthrough.css">
+    <link rel="stylesheet" href="./static/css/modules/beginner-walkthrough.css">
+    <link rel="stylesheet" href="./static/css/modules/beginner-intro.css">
+    <link rel="stylesheet" href="./static/css/modules/forms.css">
+    <link rel="stylesheet" href="./static/css/modules/calculator.css">
+    <link rel="stylesheet" href="./static/css/modules/virtual-assistant.css">
+    <link rel="stylesheet" href="./static/css/modules/document-analyzer.css">
+    <link rel="stylesheet" href="./static/css/modules/micro-steps.css">
+    <link rel="stylesheet" href="./static/css/time-estimates.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text-dark: #334155;
+            --text-light: #f1f5f9;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --accent-dark: #7c3aed;
+            --bg-light: #f1f5f9;
+            --neu-shadow-light: 5px 5px 10px #d1d9e6, -5px -5px 10px #ffffff;
+            --neu-shadow-inset-light: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px #ffffff;
+            --neu-shadow-dark: 5px 5px 10px #161f2c, -5px -5px 10px #263340;
+            --neu-shadow-inset-dark: inset 2px 2px 5px #161f2c, inset -2px -2px 5px #263340;
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
+            --secondary: #34d399;
+            --dark: #f8fafc;
+            --light: #0f172a;
+            --text-dark: #e2e8f0;
+            --text-light: #1e293b;
+            --border: #1e293b;
+            --accent: #a78bfa;
+            --accent-light: #c4b5fd;
+            --accent-dark: #8b5cf6;
+            --bg-light: #1e293b;
+            --neu-shadow-light: 5px 5px 10px #0c111f, -5px -5px 10px #121d35;
+            --neu-shadow-inset-light: inset 2px 2px 5px #0c111f, inset -2px -2px 5px #121d35;
+            --neu-shadow-dark: 5px 5px 10px #0c111f, -5px -5px 10px #121d35;
+            --neu-shadow-inset-dark: inset 2px 2px 5px #0c111f, inset -2px -2px 5px #121d35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--light);
+            color: var(--text-dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .brand-tagline {
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-top: -5px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.75rem;
+            transition: var(--transition);
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        nav a:hover {
+            box-shadow: var(--neu-shadow-inset-light);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        nav a:active {
+            transform: translateY(0);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .mode-toggle {
+            background: var(--light);
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 50%;
+            transition: var(--transition);
+            box-shadow: var(--neu-shadow-light);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mode-toggle:hover {
+            box-shadow: var(--neu-shadow-inset-light);
+            color: var(--accent);
+        }
+
+        .mode-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--light);
+            border: none;
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            box-shadow: var(--neu-shadow-light);
+            width: 50px;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn:hover {
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 30px 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--accent);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:active {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:active {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-light);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-accent:active {
+            background-color: var(--accent-dark);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        .card {
+            background-color: var(--light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            padding: 1.5rem;
+            height: 100%;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-content {
+            color: var(--text-dark);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .steps {
+            counter-reset: step;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            flex: 0 0 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-content {
+            flex: 1;
+            padding: 0 0 0 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 25px;
+            width: 2px;
+            height: calc(100% - 30px);
+            background-color: var(--accent);
+            z-index: 1;
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .accordion-header {
+            padding: 1rem 1.5rem;
+            background-color: var(--light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--text-dark);
+        }
+
+        .accordion-header:hover {
+            color: var(--accent);
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            background-color: var(--light);
+            color: var(--text-dark);
+        }
+
+        .accordion-content.active {
+            padding: 1rem 1.5rem;
+            max-height: 1000px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.5s ease;
+            color: var(--accent);
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .eligibility-checker {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 1rem;
+            font-size: 1rem;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: var(--transition);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: var(--neu-shadow-inset-light), 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-option input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--bg-light);
+            box-shadow: var(--neu-shadow-inset-light);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .radio-option input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            animation: pulse 0.3s ease;
+        }
+
+        .radio-option label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .result-box {
+            background-color: var(--light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            display: none;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .result-box.show {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .result-box.eligible {
+            border-left: 5px solid var(--success);
+        }
+
+        .result-box.not-eligible {
+            border-left: 5px solid var(--danger);
+        }
+
+        .result-box.maybe-eligible {
+            border-left: 5px solid var(--warning);
+        }
+
+        .result-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .eligible .result-title {
+            color: var(--success);
+        }
+
+        .not-eligible .result-title {
+            color: var(--danger);
+        }
+
+        .maybe-eligible .result-title {
+            color: var(--warning);
+        }
+
+        .resources-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-item {
+            background-color: var(--light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .resource-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .download-btn:hover {
+            color: var(--accent-dark);
+            box-shadow: var(--neu-shadow-inset-light);
+            transform: translateY(-2px);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            box-shadow: var(--neu-shadow-light);
+            background-color: var(--light);
+        }
+
+        .alert-icon {
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .alert-info {
+            border-left: 5px solid var(--primary);
+        }
+
+        .alert-info .alert-icon {
+            color: var(--primary);
+        }
+
+        .alert-warning {
+            border-left: 5px solid var(--warning);
+        }
+
+        .alert-warning .alert-icon {
+            color: var(--warning);
+        }
+
+        .alert-danger {
+            border-left: 5px solid var(--danger);
+        }
+
+        .alert-danger .alert-icon {
+            color: var(--danger);
+        }
+
+        .alert-success {
+            border-left: 5px solid var(--success);
+        }
+
+        .alert-success .alert-icon {
+            color: var(--success);
+        }
+
+        footer {
+            background-color: var(--light);
+            color: var(--text-dark);
+            padding: 3rem 0 1.5rem;
+            border-radius: 30px 30px 0 0;
+            box-shadow: var(--neu-shadow-light);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            border-radius: 50%;
+            transition: var(--transition);
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            box-shadow: var(--neu-shadow-inset-light);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.875rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: var(--light);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--neu-shadow-light);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            box-shadow: var(--neu-shadow-inset-light);
+            color: var(--accent-dark);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark) transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Help Tooltips */
+        .help-tooltip {
+            display: inline-block;
+            margin-left: 0.5rem;
+            color: var(--accent);
+            cursor: help;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .help-tooltip-content {
+            position: absolute;
+            width: 250px;
+            background-color: var(--dark);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            top: -5px;
+            left: 25px;
+            z-index: 10;
+            font-size: 0.85rem;
+            font-weight: normal;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .help-tooltip:hover .help-tooltip-content {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Background animation */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            animation: move 3s linear infinite;
+            border-radius: 50%;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Animation Classes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 0.5s ease forwards;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.5s ease forwards;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* Filing Tool Styles */
+        .filing-tool {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            padding: 2rem;
+        }
+
+        .filing-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .filing-step.active {
+            display: block;
+        }
+
+        .filing-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .filing-progress {
+            margin: 2rem 0;
+        }
+
+        .filing-progress-bar {
+            height: 8px;
+            background-color: var(--bg-light);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .filing-progress-fill {
+            height: 100%;
+            background-color: var(--accent);
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .filing-progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+        }
+
+        /* Steps Progress Indicator */
+        .steps-container {
+            margin: 2rem 0;
+        }
+
+        .steps-progress {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .steps-progress::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .step-indicator {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-bubble {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .step-label {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            max-width: 100px;
+        }
+
+        .step-indicator.completed .step-bubble {
+            background-color: var(--success);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-indicator.active .step-bubble {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .step-indicator.completed .step-label,
+        .step-indicator.active .step-label {
+            font-weight: 500;
+        }
+
+        .step-indicator.completed .step-label {
+            color: var(--success);
+        }
+
+        .step-indicator.active .step-label {
+            color: var(--accent);
+        }
+
+        /* Auto-Fill Styles */
+        .auto-fill-section {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background-color: var(--bg-light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .auto-fill-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+        }
+
+        .auto-fill-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .auto-fill-option {
+            flex: 1 1 200px;
+            padding: 1rem;
+            background-color: var(--light);
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .auto-fill-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .auto-fill-option:active {
+            transform: translateY(0);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .auto-fill-option-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .auto-fill-option-description {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* Voice Input Styles */
+        .voice-input {
+            position: relative;
+        }
+
+        .voice-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .voice-btn:hover {
+            color: var(--accent-dark);
+            background-color: var(--bg-light);
+        }
+
+        .voice-btn.recording {
+            color: var(--danger);
+            animation: pulseRecording 1.5s infinite;
+        }
+
+        @keyframes pulseRecording {
+            0% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: translateY(-50%) scale(1.1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* Error Validation Styles */
+        .error-message {
+            color: var(--danger);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .form-control.error {
+            box-shadow: var(--neu-shadow-inset-light), 0 0 0 2px rgba(239, 68, 68, 0.2);
+        }
+
+        .form-control.valid {
+            box-shadow: var(--neu-shadow-inset-light), 0 0 0 2px rgba(34, 197, 94, 0.2);
+        }
+
+        .validation-icon {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            display: none;
+        }
+
+        .validation-icon.error {
+            color: var(--danger);
+            display: block;
+        }
+
+        .validation-icon.valid {
+            color: var(--success);
+            display: block;
+        }
+
+        /* Document Upload Styles */
+        .upload-area {
+            border: 2px dashed var(--accent);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-color: var(--light);
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-dark);
+            background-color: var(--bg-light);
+            transform: translateY(-5px);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .upload-text {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .upload-subtext {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .uploaded-files {
+            margin-top: 1.5rem;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-light);
+            border-radius: 0.75rem;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--neu-shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .file-item:hover {
+            transform: translateX(5px);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .file-icon {
+            color: var(--accent);
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .file-action-btn {
+            background: var(--light);
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .file-action-btn:hover {
+            color: var(--accent);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        /* Interactive Checklist */
+        .interactive-checklist {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checklist-checkbox {
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            appearance: none;
+            background-color: var(--bg-light);
+            border-radius: 0.25rem;
+            box-shadow: var(--neu-shadow-inset-light);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .checklist-checkbox:checked {
+            background-color: var(--accent);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .checklist-checkbox:checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        .checklist-content {
+            flex: 1;
+        }
+
+        .checklist-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .checklist-description {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* Expert Review Section */
+        .expert-review {
+            background-color: var(--bg-light);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .expert-review-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .expert-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .expert-info h4 {
+            margin: 0;
+            color: var(--accent);
+        }
+
+        .expert-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .expert-review-content {
+            background-color: var(--light);
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        /* Summary Review Styles */
+        .summary-section {
+            margin: 2rem 0;
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .summary-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .summary-edit {
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--neu-shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .summary-edit:hover {
+            box-shadow: var(--neu-shadow-inset-light);
+            transform: translateY(-2px);
+        }
+
+        .summary-edit:active {
+            transform: translateY(0);
+        }
+
+        .summary-group {
+            background-color: var(--light);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--neu-shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .summary-group:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-group-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-label {
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .summary-value {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .summary-total {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .summary-total .summary-value {
+            color: var(--success);
+        }
+
+        /* Virtual Helper Styles */
+        .virtual-helper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .helper-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--light);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--neu-shadow-light);
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.5rem;
+        }
+
+        .helper-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .helper-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .helper-chat {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background-color: var(--light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .helper-chat.active {
+            display: flex;
+        }
+
+        .helper-header {
+            padding: 15px;
+            background-color: var(--accent);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .helper-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .helper-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .helper-close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .helper-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .helper-message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 5px;
+            animation: fadeInUp 0.3s ease;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .helper-message.assistant {
+            background-color: var(--bg-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .helper-message.user {
+            background-color: var(--accent);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .helper-input {
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 10px;
+            background-color: var(--light);
+        }
+
+        .helper-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-shadow: var(--neu-shadow-inset-light);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .helper-input button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .helper-input button:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .helper-input button:active {
+            transform: translateY(0);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .helper-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .helper-option {
+            background-color: var(--accent-light);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .helper-option:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .helper-option:active {
+            transform: translateY(0);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        /* Phone Verification Styles */
+        .verification-code-inputs {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .verification-input {
+            width: 50px;
+            height: 60px;
+            border: none;
+            border-radius: 0.75rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            box-shadow: var(--neu-shadow-inset-light);
+            transition: all 0.3s ease;
+        }
+
+        .verification-input:focus {
+            outline: none;
+            box-shadow: var(--neu-shadow-inset-light), 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Success Animation */
+        .success-animation {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .success-circle {
+            width: 100px;
+            height: 100px;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 3rem;
+            animation: successPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes successPop {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Checkmark Animation */
+        .checkmark-container {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--success);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--success);
+            stroke-miterlimit: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+        }
+
+        .checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes scale {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.1, 1.1, 1); }
+        }
+
+        @keyframes fill {
+            100% { box-shadow: inset 0px 0px 0px 30px var(--success); }
+        }
+
+        /* Confetti Animation */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+            display: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            opacity: 0.8;
+            animation: confettiDrop 5s ease-in-out forwards;
+        }
+
+        @keyframes confettiDrop {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Customizable Alert System */
+        .alert-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .custom-alert {
+            background-color: var(--light);
+            border-radius: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            animation: slideInRight 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .custom-alert.closing {
+            animation: slideOutRight 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        .alert-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--accent);
+            width: 100%;
+            animation: alertProgress 5s linear forwards;
+        }
+
+        @keyframes alertProgress {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        .custom-alert-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .custom-alert-content {
+            flex: 1;
+        }
+
+        .custom-alert-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .custom-alert-message {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        .custom-alert-close {
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 0.9rem;
+            opacity: 0.5;
+            transition: opacity 0.2s ease;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-alert-close:hover {
+            opacity: 1;
+            background-color: var(--bg-light);
+        }
+
+        .custom-alert.info {
+            border-left: 4px solid var(--primary);
+        }
+
+        .custom-alert.info .custom-alert-icon {
+            color: var(--primary);
+        }
+
+        .custom-alert.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .custom-alert.success .custom-alert-icon {
+            color: var(--success);
+        }
+
+        .custom-alert.warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .custom-alert.warning .custom-alert-icon {
+            color: var(--warning);
+        }
+
+        .custom-alert.error {
+            border-left: 4px solid var(--danger);
+        }
+
+        .custom-alert.error .custom-alert-icon {
+            color: var(--danger);
+        }
+
+        /* Quick Start Guide */
+        .quick-start-guide {
+            background-color: var(--bg-light);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .quick-start-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .quick-start-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-start-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .quick-start-steps {
+            list-style: none;
+            counter-reset: step;
+            margin: 0;
+            padding: 0;
+        }
+
+        .quick-start-step {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1rem;
+            counter-increment: step;
+        }
+
+        .quick-start-step::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-start-step-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        /* Progress Save Reminder */
+        .save-reminder {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--light);
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: var(--neu-shadow-light);
+            z-index: 99;
+            max-width: 300px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transform: translateY(150%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .save-reminder.active {
+            transform: translateY(0);
+        }
+
+        .save-reminder-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .save-reminder-content {
+            flex: 1;
+        }
+
+        .save-reminder-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .save-reminder-text {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .save-reminder-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .save-reminder-btn {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .save-reminder-btn.primary {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .save-reminder-btn.primary:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .save-reminder-btn.secondary {
+            background-color: var(--light);
+            color: var(--text-dark);
+            border: none;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .save-reminder-btn.secondary:hover {
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        /* Feedback Button */
+        .feedback-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 160px;
+            background-color: var(--light);
+            color: var(--accent);
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            box-shadow: var(--neu-shadow-light);
+            z-index: 99;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-btn:active {
+            transform: translateY(0);
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        /* Mobile Optimization Notice */
+        .mobile-notice {
+            display: none;
+            background-color: var(--bg-light);
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Status Tracker */
+        .status-tracker {
+            margin: 2rem 0;
+        }
+
+        .status-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .status-steps::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--border);
+            z-index: 1;
+        }
+
+        .status-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+
+        .status-dot {
+            width: 30px;
+            height: 30px;
+            background-color: var(--light);
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            box-shadow: var(--neu-shadow-light);
+        }
+
+        .status-label {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        .status-step.completed .status-dot {
+            background-color: var(--success);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-step.active .status-dot {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .status-step.completed .status-label {
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .status-step.active .status-label {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Creator Badge */
+        .creator-badge {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background-color: var(--light);
+            color: var(--accent);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            box-shadow: var(--neu-shadow-light);
+            z-index: 99;
+            transform: rotate(45deg);
+            transform-origin: top right;
+            animation: badgePulse 4s infinite alternate;
+            text-decoration: none;
+        }
+
+        @keyframes badgePulse {
+            0% { transform: rotate(45deg) scale(1); }
+            100% { transform: rotate(45deg) scale(1.05); }
+        }
+
+        .creator-badge:hover {
+            animation-play-state: paused;
+            box-shadow: var(--neu-shadow-inset-light);
+        }
+
+        .creator-name {
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            nav {
+                width: 100%;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+                width: 100%;
+            }
+
+            .nav-menu.active {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .step-content {
+                padding-left: 0;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .helper-chat {
+                width: 300px;
+                height: 400px;
+                bottom: 80px;
+                right: 10px;
+            }
+
+            .creator-badge {
+                right: 10px;
+                font-size: 0.75rem;
+                padding: 8px 12px;
+            }
+
+            .verification-code-inputs {
+                gap: 0.25rem;
+            }
+
+            .verification-input {
+                width: 40px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+
+            .steps-progress::before {
+                top: 12px;
+            }
+
+            .step-bubble {
+                width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+            }
+
+            .step-label {
+                font-size: 0.75rem;
+                max-width: 70px;
+            }
+
+            .mobile-notice {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Elements for Sound Effects -->
+    <audio id="clickSound" preload="auto">
+        <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsS0AAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg">
+    </audio>
+    <audio id="successSound" preload="auto">
+        <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsS0AAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg">
+    </audio>
+    <audio id="errorSound" preload="auto">
+        <source src="data:audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsS0AAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg">
+    </audio>
+
+    <!-- Alert Container -->
+    <div class="alert-container" id="alertContainer"></div>
+
+    <!-- Save Reminder -->
+    <div class="save-reminder" id="saveReminder">
+        <div class="save-reminder-icon">
+            <i class="fas fa-save"></i>
+        </div>
+        <div class="save-reminder-content">
+            <div class="save-reminder-title">Your progress has been saved</div>
+            <div class="save-reminder-text">You can continue where you left off anytime.</div>
+            <div class="save-reminder-actions">
+                <button class="save-reminder-btn primary" id="saveReminderContinue">Continue</button>
+                <button class="save-reminder-btn secondary" id="saveReminderClose">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-hand-holding-dollar"></i>
+                <div>
+                    <span>RecoveryRebateMaximizer</span>
+                    <div class="brand-tagline">Automated 2021 Tax Filing System</div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#eligibility">Eligibility</a></li>
+                    <li><a href="#claim-process">Claim Process</a></li>
+                    <li><a href="#file-now">File Now</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <button class="mode-toggle" id="modeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <a href="#about-creator" class="creator-badge">
+        Created by <span class="creator-name">Vince Kinney</span>
+    </a>
+
+    <section class="hero">
+        <div class="bg-animation">
+            <span style="top:80%; left:20%; animation-delay: 0s;"></span>
+            <span style="top:70%; left:50%; animation-delay: 0.2s;"></span>
+            <span style="top:40%; left:80%; animation-delay: 0.4s;"></span>
+            <span style="top:30%; left:30%; animation-delay: 0.6s;"></span>
+            <span style="top:60%; left:70%; animation-delay: 0.8s;"></span>
+            <span style="top:20%; left:40%; animation-delay: 1s;"></span>
+            <span style="top:90%; left:10%; animation-delay: 1.2s;"></span>
+            <span style="top:10%; left:90%; animation-delay: 1.4s;"></span>
+        </div>
+        <div class="container">
+            <h1 class="animate-fade-in">Get Your Missing 2021 Stimulus Payment</h1>
+            <p class="animate-fade-in delay-100">
+                Did you miss out on your third stimulus payment from 2021? Our automated system helps you claim your Recovery Rebate Credit with maximum success. Get up to $1,400 per person that you're entitled to!
+            </p>
+            <div class="cta-buttons animate-fade-in delay-200">
+                <a href="#file-now" class="btn btn-primary" id="startFilingBtn">Start Filing Now</a>
+                <a href="#eligibility-checker" class="btn btn-secondary" id="checkEligibilityBtn">Check Your Eligibility</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="overview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Understanding the Recovery Rebate Credit</h2>
+            </div>
+
+            <div class="grid">
+                <div class="card animate-fade-in">
+                    <h3 class="card-title"><i class="fas fa-info-circle"></i> What is the Recovery Rebate Credit?</h3>
+                    <div class="card-content">
+                        <p>The Recovery Rebate Credit is a tax credit related to the third Economic Impact Payment (stimulus payment) issued in 2021 as part of COVID-19 relief efforts. If you didn't receive the full amount you were entitled to, you may be able to claim the remaining amount as a credit on your tax return.</p>
+                    </div>
+                </div>
+
+                <div class="card animate-fade-in delay-100">
+                    <h3 class="card-title"><i class="fas fa-dollar-sign"></i> Third Stimulus Payment Details</h3>
+                    <div class="card-content">
+                        <p>The third stimulus payment was authorized by the American Rescue Plan Act of 2021 and provided:</p>
+                        <ul>
+                            <li>Up to $1,400 for eligible individuals</li>
+                            <li>Up to $2,800 for eligible married couples filing jointly</li>
+                            <li>Up to $1,400 for each qualifying dependent</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card animate-fade-in delay-200">
+                    <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Important Deadlines</h3>
+                    <div class="card-content">
+                        <p>To claim the 2021 Recovery Rebate Credit, you must file a 2021 tax return, even if you're not typically required to file. The deadline to claim this credit is:</p>
+                        <p><strong>April 15, 2025</strong> (three years from the original tax filing deadline)</p>
+                        <p>Don't delay - file as soon as possible to receive your credit faster!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+                <div class="alert-content">
+                    <h4 class="alert-title">Important Note</h4>
+                    <p>The IRS is no longer issuing the third Economic Impact Payments directly. The only way to get this payment now is to claim the Recovery Rebate Credit on your 2021 tax return. Our automated filing tool will handle this entire process for you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="eligibility">
+        <div class="container">
+            <div class="section-title">
+                <h2>Eligibility Requirements</h2>
+            </div>
+
+            <div class="grid">
+                <div class="card animate-fade-in">
+                    <h3 class="card-title"><i class="fas fa-user-check"></i> Basic Eligibility</h3>
+                    <div class="card-content">
+                        <p>To be eligible for the Recovery Rebate Credit, you must:</p>
+                        <ul>
+                            <li>Be a U.S. citizen, permanent resident, or qualifying resident alien</li>
+                            <li>Have a valid Social Security Number (SSN) issued before the due date of your 2021 tax return</li>
+                            <li>Not be claimed as a dependent on someone else's tax return</li>
+                            <li>Have not received the full amount of the third stimulus payment you were entitled to</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card animate-fade-in delay-100">
+                    <h3 class="card-title"><i class="fas fa-money-bill-wave"></i> Income Limits</h3>
+                    <div class="card-content">
+                        <p>The amount of the credit phases out based on your adjusted gross income (AGI):</p>
+                        <ul>
+                            <li><strong>Single filers:</strong> Begins phasing out at $75,000 AGI, fully phases out at $80,000</li>
+                            <li><strong>Head of household:</strong> Begins phasing out at $112,500 AGI, fully phases out at $120,000</li>
+                            <li><strong>Married filing jointly:</strong> Begins phasing out at $150,000 AGI, fully phases out at $160,000</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card animate-fade-in delay-200">
+                    <h3 class="card-title"><i class="fas fa-users"></i> Qualifying Dependents</h3>
+                    <div class="card-content">
+                        <p>Unlike previous stimulus payments, the third payment included eligible dependents of all ages, not just children under 17. Qualifying dependents include:</p>
+                        <ul>
+                            <li>Children under 19 (or under 24 if a full-time student)</li>
+                            <li>Adult dependents (including elderly parents and disabled adult children)</li>
+                            <li>Must be claimed on your tax return</li>
+                            <li>Must have a valid SSN or Adoption Taxpayer Identification Number (ATIN)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="eligibility-checker" class="eligibility-checker animate-fade-in">
+                <h3 style="margin-bottom: 1.5rem;">Eligibility Checker Tool</h3>
+                <p style="margin-bottom: 1.5rem;">Answer a few questions to see if you might be eligible to claim the Recovery Rebate Credit.</p>
+
+                <form id="eligibilityForm">
+                    <div class="form-group">
+                        <label>Did you receive the full third stimulus payment in 2021?
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">The third stimulus payment was issued in March 2021. Most eligible individuals received $1,400 per person.</span>
+                            </span>
+                        </label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="received-yes" name="received" value="yes">
+                                <label for="received-yes">Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="received-no" name="received" value="no">
+                                <label for="received-no">No</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="received-partial" name="received" value="partial">
+                                <label for="received-partial">Partial</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="received-unsure" name="received" value="unsure">
+                                <label for="received-unsure">Not sure</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What was your filing status for 2021?
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">This is your tax filing status for the 2021 tax year, not your current filing status.</span>
+                            </span>
+                        </label>
+                        <select class="form-control" id="filingStatus">
+                            <option value="">Select an option</option>
+                            <option value="single">Single</option>
+                            <option value="head">Head of Household</option>
+                            <option value="joint">Married Filing Jointly</option>
+                            <option value="separate">Married Filing Separately</option>
+                            <option value="widow">Qualifying Widow(er)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What was your approximate adjusted gross income (AGI) in 2021?
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">Your AGI can be found on line 11 of your 2021 Form 1040. If you haven't filed yet, estimate your total income minus certain deductions.</span>
+                            </span>
+                        </label>
+                        <select class="form-control" id="incomeRange">
+                            <option value="">Select an option</option>
+                            <option value="under75k">Under $75,000</option>
+                            <option value="75k-80k">$75,000 - $80,000</option>
+                            <option value="80k-112.5k">$80,000 - $112,500</option>
+                            <option value="112.5k-120k">$112,500 - $120,000</option>
+                            <option value="120k-150k">$120,000 - $150,000</option>
+                            <option value="150k-160k">$150,000 - $160,000</option>
+                            <option value="over160k">Over $160,000</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Were you claimed as a dependent on someone else's 2021 tax return?
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">If someone else could claim you as a dependent on their tax return, you are not eligible for the Recovery Rebate Credit.</span>
+                            </span>
+                        </label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="dependent-yes" name="dependent" value="yes">
+                                <label for="dependent-yes">Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="dependent-no" name="dependent" value="no">
+                                <label for="dependent-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Did you have any new qualifying dependents in 2021 that weren't included in your stimulus payment?
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">Examples include: a child born or adopted in 2021, a parent who became your dependent in 2021, or a college student you support.</span>
+                            </span>
+                        </label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="newdependent-yes" name="newdependent" value="yes">
+                                <label for="newdependent-yes">Yes</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="newdependent-no" name="newdependent" value="no">
+                                <label for="newdependent-no">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="checkEligibilitySubmit" class="btn btn-accent">Check Eligibility</button>
+                </form>
+
+                <div id="eligibleResult" class="result-box eligible">
+                    <h4 class="result-title"><i class="fas fa-check-circle"></i> You May Be Eligible!</h4>
+                    <p>Based on your responses, you may be eligible to claim the Recovery Rebate Credit on your 2021 tax return. Here's what you should do next:</p>
+                    <ol>
+                        <li>Use our automated filing tool to prepare and file your 2021 tax return</li>
+                        <li>Our system will automatically calculate and claim the maximum Recovery Rebate Credit you're entitled to</li>
+                        <li>We'll handle all the paperwork and submission to the IRS for you</li>
+                    </ol>
+                    <p><strong>Note:</strong> This is only a preliminary assessment. The IRS will make the final determination when you file your tax return.</p>
+                    <a href="#file-now" class="btn btn-primary" style="margin-top: 1rem;" id="startFilingFromEligible">Start Automated Filing</a>
+                </div>
+
+                <div id="notEligibleResult" class="result-box not-eligible">
+                    <h4 class="result-title"><i class="fas fa-times-circle"></i> You May Not Be Eligible</h4>
+                    <p>Based on your responses, you may not be eligible to claim the Recovery Rebate Credit. This could be because:</p>
+                    <ul>
+                        <li>You've already received the full stimulus payment amount</li>
+                        <li>Your income exceeds the eligibility threshold</li>
+                        <li>You were claimed as a dependent on someone else's tax return</li>
+                    </ul>
+                    <p><strong>If you're not sure:</strong> Our AI tax expert can analyze your specific situation and may find exceptions that apply to you.</p>
+                    <button id="askHelperButton" class="btn btn-accent" style="margin-top: 1rem;">Consult AI Tax Expert</button>
+                </div>
+
+                <div id="maybeEligibleResult" class="result-box maybe-eligible">
+                    <h4 class="result-title"><i class="fas fa-question-circle"></i> You Might Be Eligible</h4>
+                    <p>Based on your responses, you might be eligible for a partial Recovery Rebate Credit, but we need more information to be certain. Our automated filing tool can:</p>
+                    <ol>
+                        <li>Use IRS data integration to verify your stimulus payment history</li>
+                        <li>Calculate the maximum credit you're entitled to</li>
+                        <li>Prepare and file your 2021 tax return with minimal effort from you</li>
+                        <li>Maximize your chances of approval by the IRS</li>
+                    </ol>
+                    <a href="#file-now" class="btn btn-primary" style="margin-top: 1rem;" id="startFilingFromMaybe">Start Automated Filing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="claim-process">
+        <div class="container">
+            <div class="section-title">
+                <h2>How We Automate Your Recovery Rebate Credit Claim</h2>
+            </div>
+
+            <div class="steps">
+                <div class="step animate-fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Automatic Eligibility Verification</h3>
+                        <p>Our system automatically verifies your eligibility for the Recovery Rebate Credit:</p>
+                        <ul>
+                            <li>Secure IRS data integration checks your stimulus payment history</li>
+                            <li>AI-powered analysis identifies special exceptions that might apply to your case</li>
+                            <li>Automated verification of your filing status and dependent eligibility</li>
+                            <li>No need to manually search for records or payment information</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step animate-fade-in delay-100">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Smart Document Processing</h3>
+                        <p>Our system makes document handling effortless:</p>
+                        <ul>
+                            <li>Take photos of your tax documents with your smartphone - our system extracts the data automatically</li>
+                            <li>Secure document upload with 256-bit encryption</li>
+                            <li>Intelligent form filling that completes most fields for you</li>
+                            <li>Automated error detection and correction</li>
+                        </ul>
+                        <p><strong>No paperwork hassle - just snap photos and let our system do the work!</strong></p>
+                    </div>
+                </div>
+
+                <div class="step animate-fade-in delay-200">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Maximized Credit Calculation</h3>
+                        <p>Our proprietary algorithm ensures you get every dollar you're entitled to:</p>
+                        <ul>
+                            <li>Advanced calculation engine that considers all possible scenarios</li>
+                            <li>Identification of often-missed qualifying dependents</li>
+                            <li>Comparison with IRS records to identify discrepancies in your favor</li>
+                            <li>Credit optimization based on your specific financial situation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step animate-fade-in delay-300">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Automated Filing & Tracking</h3>
+                        <p>We handle the entire filing process from start to finish:</p>
+                        <ul>
+                            <li>One-click electronic filing directly with the IRS</li>
+                            <li>Digital signature technology - no printing or mailing required</li>
+                            <li>Real-time status tracking through our secure portal</li>
+                            <li>Automated notifications at each stage of processing</li>
+                            <li>Direct deposit setup for fastest payment receipt</li>
+                        </ul>
+                        <div class="status-tracker">
+                            <div class="status-steps">
+                                <div class="status-step completed">
+                                    <div class="status-dot"><i class="fas fa-check"></i></div>
+                                    <div class="status-label">Prepared</div>
+                                </div>
+                                <div class="status-step completed">
+                                    <div class="status-dot"><i class="fas fa-check"></i></div>
+                                    <div class="status-label">Filed</div>
+                                </div>
+                                <div class="status-step active">
+                                    <div class="status-dot">3</div>
+                                    <div class="status-label">Processing</div>
+                                </div>
+                                <div class="status-step">
+                                    <div class="status-dot">4</div>
+                                    <div class="status-label">Approved</div>
+                                </div>
+                                <div class="status-step">
+                                    <div class="status-dot">5</div>
+                                    <div class="status-label">Payment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-success">
+                <div class="alert-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="alert-content">
+                    <h4 class="alert-title">Why Use Our Automated System?</h4>
+                    <p>The Recovery Rebate Credit Maximizer makes claiming your missing stimulus payment virtually effortless:</p>
+                    <ul>
+                        <li><strong>Time-Saving:</strong> Complete the entire process in under 15 minutes</li>
+                        <li><strong>Accuracy:</strong> Our AI system catches errors that humans often miss</li>
+                        <li><strong>Maximum Credit:</strong> Advanced algorithms ensure you claim every dollar you're entitled to</li>
+                        <li><strong>Hands-Off Process:</strong> We handle all the complex paperwork and filing</li>
+                        <li><strong>Peace of Mind:</strong> Real-time tracking and expert support throughout the process</li>
+                    </ul>
+                    <a href="#file-now" class="btn btn-accent" style="margin-top: 1rem;" id="startFilingFromClaim">Start Automated Filing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="file-now">
+        <div class="container">
+            <div class="section-title">
+                <h2>Automated 2021 Tax Filing & Recovery Rebate Credit Claim</h2>
+            </div>
+
+            <div class="quick-start-guide">
+                <div class="quick-start-header">
+                    <div class="quick-start-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="quick-start-title">Quick Start Guide</h3>
+                </div>
+                <p>Our automated filing system makes claiming your Recovery Rebate Credit simple and fast:</p>
+                <ul class="quick-start-steps">
+                    <li class="quick-start-step">
+                        <div class="quick-start-step-title">Enter Basic Information</div>
+                        <p>Provide some basic details or use our auto-fill options to save time.</p>
+                    </li>
+                    <li class="quick-start-step">
+                        <div class="quick-start-step-title">Upload or Scan Documents</div>
+                        <p>Our system automatically extracts information from your tax documents.</p>
+                    </li>
+                    <li class="quick-start-step">
+                        <div class="quick-start-step-title">Review & Verify</div>
+                        <p>Confirm the information our AI has prepared for your return.</p>
+                    </li>
+                    <li class="quick-start-step">
+                        <div class="quick-start-step-title">E-Sign & Submit</div>
+                        <p>Electronically sign and submit your return to the IRS with one click.</p>
+                    </li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Your progress is automatically saved at every step.</strong> You can leave and return anytime to continue where you left off.</p>
+            </div>
+
+            <div class="mobile-notice">
+                <i class="fas fa-mobile-alt"></i> <strong>Mobile-Friendly:</strong> You can complete this process on your smartphone or tablet!
+            </div>
+
+            <div class="filing-tool">
+                <div class="filing-progress">
+                    <div class="filing-progress-bar">
+                        <div class="filing-progress-fill" id="filingProgressBar"></div>
+                    </div>
+                    <div class="filing-progress-text">
+                        <span>Start</span>
+                        <span id="progressPercent">0%</span>
+                        <span>Complete</span>
+                    </div>
+                </div>
+
+                <div class="steps-container">
+                    <div class="steps-progress">
+                        <div class="step-indicator active" id="stepIndicator1">
+                            <div class="step-bubble">1</div>
+                            <div class="step-label">Basic Info</div>
+                        </div>
+                        <div class="step-indicator" id="stepIndicator2">
+                            <div class="step-bubble">2</div>
+                            <div class="step-label">Document Upload</div>
+                        </div>
+                        <div class="step-indicator" id="stepIndicator3">
+                            <div class="step-bubble">3</div>
+                            <div class="step-label">Review & Verify</div>
+                        </div>
+                        <div class="step-indicator" id="stepIndicator4">
+                            <div class="step-bubble">4</div>
+                            <div class="step-label">Sign & Submit</div>
+                        </div>
+                        <div class="step-indicator" id="stepIndicator5">
+                            <div class="step-bubble">5</div>
+                            <div class="step-label">Confirmation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filing-step active" id="filingStep1">
+                    <h3>Step 1: Basic Information</h3>
+                    <p>Let's start with your basic information. Our system will use this to check for your stimulus payment records automatically.</p>
+
+                    <div class="micro-steps">
+                        <div class="micro-step active" id="microStep1">
+                            <div class="micro-step-number">1.1</div>
+                            <div class="micro-step-label">Personal Details</div>
+                        </div>
+                        <div class="micro-step" id="microStep2">
+                            <div class="micro-step-number">1.2</div>
+                            <div class="micro-step-label">Contact Information</div>
+                        </div>
+                        <div class="micro-step" id="microStep3">
+                            <div class="micro-step-number">1.3</div>
+                            <div class="micro-step-label">Filing Status</div>
+                        </div>
+                        <div class="micro-step" id="microStep4">
+                            <div class="micro-step-number">1.4</div>
+                            <div class="micro-step-label">Dependents</div>
+                        </div>
+                    </div>
+
+                    <div class="auto-fill-section">
+                        <h4 class="auto-fill-title"><i class="fas fa-magic"></i> Speed Up Your Filing</h4>
+                        <p>We can auto-fill most of your information. Choose one of the following options:</p>
+
+                        <div class="auto-fill-options">
+                            <div class="auto-fill-option" id="autoFillIRS">
+                                <h5 class="auto-fill-option-title"><i class="fas fa-file-invoice-dollar"></i> IRS Account Import</h5>
+                                <p class="auto-fill-option-description">Securely connect to your IRS online account to import your information</p>
+                            </div>
+
+                            <div class="auto-fill-option" id="autoFillTaxReturn">
+                                <h5 class="auto-fill-option-title"><i class="fas fa-file-alt"></i> Prior Tax Return</h5>
+                                <p class="auto-fill-option-description">Upload your 2020 tax return to extract your information</p>
+                            </div>
+
+                            <div class="auto-fill-option" id="autoFillManual">
+                                <h5 class="auto-fill-option-title"><i class="fas fa-keyboard"></i> Manual Entry</h5>
+                                <p class="auto-fill-option-description">Enter your information manually with our guided assistance</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name (as shown on your Social Security Card)
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">Enter your name exactly as it appears on your Social Security card to avoid IRS processing delays.</span>
+                            </span>
+                        </label>
+                        <div class="voice-input">
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+                            <button type="button" class="voice-btn" id="fullNameVoice" title="Use voice input">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <span class="validation-icon" id="fullNameValidation"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        <div class="error-message" id="fullNameError">Please enter your full legal name</div>
+                        <div class="smart-suggestions">
+                            <div class="suggestion-chips">
+                                <span class="suggestion-chip" data-field="fullName">John A. Smith</span>
+                                <span class="suggestion-chip" data-field="fullName">Jane B. Doe</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ssn">Social Security Number
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">Your 9-digit Social Security Number is required for tax filing. This information is encrypted and secure.</span>
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" id="ssn" placeholder="XXX-XX-XXXX">
+                        <div class="error-message" id="ssnError">Please enter a valid 9-digit SSN (XXX-XX-XXXX)</div>
+                        <div class="autosave-indicator">
+                            <i class="fas fa-shield-alt"></i> Secure & encrypted
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Filing Status for 2021
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">This is your tax filing status for 2021, which affects your tax rates and eligibility for certain deductions and credits.</span>
+                            </span>
+                        </label>
+                        <select class="form-control" id="filingStatusTax">
+                            <option value="">Select your filing status</option>
+                            <option value="single">Single</option>
+                            <option value="head">Head of Household</option>
+                            <option value="joint">Married Filing Jointly</option>
+                            <option value="separate">Married Filing Separately</option>
+                            <option value="widow">Qualifying Widow(er)</option>
+                        </select>
+                        <div class="error-message" id="filingStatusError">Please select your filing status</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number (for verification)
+                            <span class="help-tooltip">
+                                <i class="fas fa-question-circle"></i>
+                                <span class="help-tooltip-content">We'll send a verification code to this number to secure your account and tax information.</span>
+                            </span>
+                        </label>
+                        <input type="text" class="form-control" id="phoneNumber" placeholder="(XXX) XXX-XXXX">
+                        <div class="error-message" id="phoneNumberError">Please enter a valid phone number</div>
+                        <div class="autosave-indicator">
+                            <i class="fas fa-info-circle"></i> We'll send a verification code to this number
+                        </div>
+                    </div>
+
+                    <div class="filing-nav">
+                        <div></div>
+                        <button type="button" class="btn btn-accent next-step" id="continueToStep2">Continue</button>
+                    </div>
+
+                    <div class="autosave-indicator" style="text-align: center; margin-top: 2rem;">
+                        <i class="fas fa-save"></i> Your progress is automatically saved
+                    </div>
+                </div>
+
+                <div class="filing-step" id="filingStep2">
+                    <h3>Step 2: Document Upload & Data Extraction</h3>
+                    <p>Our system can automatically extract information from your tax documents. Upload or take photos of your documents below.</p>
+
+                    <div class="alert alert-info">
+                        <div class="alert-icon"><i class="fas fa-info-circle"></i></div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Smart Document Processing</h4>
+                            <p>Our AI system will automatically extract information from your documents, saving you from manual data entry. Simply upload photos or scans of your documents.</p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-bottom: 1.5rem;">
+                        <h4 class="card-title"><i class="fas fa-file-invoice-dollar"></i> Required Documents</h4>
+                        <div class="card-content">
+                            <p>Please provide any of the following documents you have:</p>
+                            <div class="interactive-checklist">
+                                <div class="checklist-item">
+                                    <input type="checkbox" class="checklist-checkbox" id="document1">
+                                    <div class="checklist-content">
+                                        <div class="checklist-title">IRS Letter 6475</div>
+                                        <div class="checklist-description">This letter confirms your third Economic Impact Payment amount</div>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" class="checklist-checkbox" id="document2">
+                                    <div class="checklist-content">
+                                        <div class="checklist-title">2020 Tax Return (Form 1040)</div>
+                                        <div class="checklist-description">Your previously filed tax return will help establish your filing status</div>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" class="checklist-checkbox" id="document3">
+                                    <div class="checklist-content">
+                                        <div class="checklist-title">W-2 Forms for 2021</div>
+                                        <div class="checklist-description">These show your wages and tax withholding from employers</div>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <input type="checkbox" class="checklist-checkbox" id="document4">
+                                    <div class="checklist-content">
+                                        <div class="checklist-title">1099 Forms for 2021 (if applicable)</div>
+                                        <div class="checklist-description">These show other income such as contract work, unemployment, etc.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin-top: 1rem;"><strong>Don't have these documents?</strong> Don't worry! Our system can still process your claim.</p>
+                        </div>
+                    </div>
+
+                    <div class="document-upload-section">
+                        <div class="document-upload-container">
+                            <div class="document-upload-header">
+                                <h3>Upload Your Tax Documents</h3>
+                                <p>Our AI will automatically extract information from your documents to speed up your filing process.</p>
+                            </div>
+
+                            <div class="document-upload-area" id="document-upload-area">
+                                <div class="document-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="document-upload-text">
+                                    <h4>Drag & drop your document here</h4>
+                                    <p>or click to browse your files</p>
+                                </div>
+                                <button class="document-upload-btn">
+                                    <i class="fas fa-file-upload"></i> Select Document
+                                </button>
+                            </div>
+
+                            <div id="document-preview-area" class="document-preview-area">
+                                <!-- Document preview will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scanner-container" id="documentScanner" style="display: none;">
+                        <div class="scanner-overlay">
+                            <div class="scanner-frame">
+                                <div class="scanner-corner corner-tl"></div>
+                                <div class="scanner-corner corner-tr"></div>
+                                <div class="scanner-corner corner-bl"></div>
+                                <div class="scanner-corner corner-br"></div>
+                                <div class="scanner-line"></div>
+                            </div>
+                            <p style="margin-top: 1rem;">Position document within frame</p>
+                            <div class="scanner-buttons">
+                                <button class="scanner-btn" id="switchCamera" title="Switch camera">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="scanner-btn capture" id="captureDocument" title="Take photo">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                                <button class="scanner-btn" id="cancelScan" title="Cancel">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="useCameraBtn" style="margin-bottom: 1.5rem;">
+                        <i class="fas fa-camera"></i> Use Camera
+                    </button>
+
+                    <div class="uploaded-files" id="uploadedFiles">
+                        <h4 style="margin-bottom: 1rem;">Uploaded Documents</h4>
+                        <div class="file-item">
+                            <div class="file-info">
+                                <i class="fas fa-file-pdf file-icon"></i>
+                                <span>IRS_Letter_6475.pdf</span>
+                            </div>
+                            <div class="file-actions">
+                                <button class="file-action-btn view-file" title="View document">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="file-action-btn delete-file" title="Delete document">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success" style="margin-top: 1.5rem;">
+                        <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Document Processing</h4>
+                            <p>Our AI is analyzing your documents and extracting the relevant information. This process is automatic and saves you from manual data entry.</p>
+                        </div>
+                    </div>
+
+                    <div class="filing-nav">
+                        <button type="button" class="btn btn-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-accent next-step">Continue</button>
+                    </div>
+
+                    <div class="autosave-indicator" style="text-align: center; margin-top: 2rem;">
+                        <i class="fas fa-save"></i> Your progress is automatically saved
+                    </div>
+                </div>
+
+                <div class="filing-step" id="filingStep3">
+                    <h3>Step 3: Review & Verify</h3>
+                    <p>Our system has automatically prepared your 2021 tax return with the Recovery Rebate Credit. Please review the information below.</p>
+
+                    <div class="expert-review">
+                        <div class="expert-review-header">
+                            <div class="expert-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="expert-info">
+                                <h4>AI Tax Expert Analysis</h4>
+                                <p>Automated review completed on <span id="reviewDate">June 12, 2023</span></p>
+                            </div>
+                        </div>
+                        <div class="expert-review-content">
+                            <p>Based on our analysis of your information and IRS records, we've determined that you're eligible for a <strong>$1,400.00</strong> Recovery Rebate Credit on your 2021 tax return.</p>
+                            <p>Our system has detected that you did not receive the third stimulus payment, despite being eligible based on your 2021 filing status and income.</p>
+                            <p>We've automatically prepared your 2021 tax return with the correct Recovery Rebate Credit amount on Line 30 of Form 1040.</p>
+                        </div>
+                    </div>
+
+                    <div class="summary-section">
+                        <div class="summary-header">
+                            <h4 class="summary-title">Tax Return Summary</h4>
+                            <a href="#" class="summary-edit" id="editSummary"><i class="fas fa-pencil-alt"></i> Edit</a>
+                        </div>
+
+                        <div class="summary-group">
+                            <div class="summary-group-title">
+                                Filing Information
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Filing Status:</div>
+                                <div class="summary-value">Single</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Tax Year:</div>
+                                <div class="summary-value">2021</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-group">
+                            <div class="summary-group-title">
+                                Income
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Wages (W-2):</div>
+                                <div class="summary-value">$42,500.00</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Other Income:</div>
+                                <div class="summary-value">$0.00</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Adjusted Gross Income:</div>
+                                <div class="summary-value">$42,500.00</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-group">
+                            <div class="summary-group-title">
+                                Deductions & Credits
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Standard Deduction:</div>
+                                <div class="summary-value">$12,550.00</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Recovery Rebate Credit:</div>
+                                <div class="summary-value">$1,400.00</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-group">
+                            <div class="summary-group-title">
+                                Tax & Refund
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Total Tax:</div>
+                                <div class="summary-value">$3,420.00</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Federal Withholding:</div>
+                                <div class="summary-value">$4,250.00</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Recovery Rebate Credit:</div>
+                                <div class="summary-value">$1,400.00</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-label">Refund Amount:</div>
+                                <div class="summary-value">$2,230.00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filing-nav">
+                        <button type="button" class="btn btn-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-accent next-step">Continue</button>
+                    </div>
+
+                    <div class="autosave-indicator" style="text-align: center; margin-top: 2rem;">
+                        <i class="fas fa-save"></i> Your progress is automatically saved
+                    </div>
+                </div>
+
+                <div class="filing-step" id="filingStep4">
+                    <h3>Step 4: Payment Information</h3>
+                    <p>Please provide your payment information for your refund.</p>
+
+                    <div class="form-group">
+                        <label>How would you like to receive your refund?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="directDeposit" name="paymentMethod" value="directDeposit">
+                                <label for="directDeposit">Direct Deposit (Fastest)</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="checkMail" name="paymentMethod" value="checkMail">
+                                <label for="checkMail">Check by Mail (7-10 days)</label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="paymentMethodError">Please select a payment method</div>
+                    </div>
+
+                    <div id="bankDetails" style="display: none;">
+                        <div class="form-group">
+                            <label for="routingNumber">Routing Number
+                                <span class="help-tooltip">
+                                    <i class="fas fa-question-circle"></i>
+                                    <span class="help-tooltip-content">The 9-digit routing number for your bank account. This can be found on your checks or by contacting your bank.</span>
+                                </span>
+                            </label>
+                            <input type="text" class="form-control" id="routingNumber" placeholder="9-digit routing number">
+                            <div class="error-message" id="routingNumberError">Please enter a valid 9-digit routing number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accountNumber">Account Number
+                                <span class="help-tooltip">
+                                    <i class="fas fa-question-circle"></i>
+                                    <span class="help-tooltip-content">Your bank account number. This can be found on your checks or by contacting your bank.</span>
+                                </span>
+                            </label>
+                            <input type="text" class="form-control" id="accountNumber" placeholder="Account number">
+                            <div class="error-message" id="accountNumberError">Please enter a valid account number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accountType">Account Type</label>
+                            <select class="form-control" id="accountType">
+                                <option value="">Select account type</option>
+                                <option value="checking">Checking</option>
+                                <option value="savings">Savings</option>
+                            </select>
+                            <div class="error-message" id="accountTypeError">Please select an account type</div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <div class="alert-icon"><i class="fas fa-info-circle"></i></div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Refund Processing Time</h4>
+                            <p>Direct deposit refunds are typically processed within 21 days. Paper checks may take an additional 7-10 days to arrive by mail.</p>
+                        </div>
+                    </div>
+
+                    <div class="filing-nav">
+                        <button type="button" class="btn btn-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-accent next-step">Continue</button>
+                    </div>
+
+                    <div class="autosave-indicator" style="text-align: center; margin-top: 2rem;">
+                        <i class="fas fa-save"></i> Your progress is automatically saved
+                    </div>
+                </div>
+
+                <div class="filing-step" id="filingStep5">
+                    <h3>Step 5: Submit Your Return</h3>
+                    <p>Please review your information one final time before submitting your return.</p>
+
+                    <div class="alert alert-warning">
+                        <div class="alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Important Information</h4>
+                            <p>By submitting your return, you declare that the information provided is true, correct, and complete to the best of your knowledge.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checklist-item">
+                            <input type="checkbox" class="checklist-checkbox" id="certify">
+                            <div class="checklist-content">
+                                <div class="checklist-title">I certify that all information provided is accurate</div>
+                                <div class="checklist-description">Under penalties of perjury, I declare that I have examined this return and accompanying schedules and statements, and to the best of my knowledge and belief, they are true, correct, and complete.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filing-nav">
+                        <button type="button" class="btn btn-secondary prev-step">Back</button>
+                        <button type="button" class="btn btn-primary" id="submitReturn">
+                            <i class="fas fa-paper-plane"></i> Submit Tax Return
+                        </button>
+                    </div>
+                </div>
+
+                <div id="filingSuccess" style="display: none;">
+                    <div class="success-animation">
+                        <div class="success-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2>Your Tax Return Has Been Submitted!</h2>
+                        <p>Your 2021 tax return with Recovery Rebate Credit has been successfully submitted.</p>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <div class="alert-icon"><i class="fas fa-info-circle"></i></div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">What Happens Next?</h4>
+                            <p>Your return will be processed by the IRS. You can expect your refund within 21 days if you selected direct deposit, or 4-6 weeks if you selected a paper check.</p>
+                            <p>We've sent a confirmation email with your filing details and a copy of your return for your records.</p>
+                        </div>
+                    </div>
+
+                    <div class="summary-group">
+                        <div class="summary-group-title">
+                            Filing Summary
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Confirmation Number:</div>
+                            <div class="summary-value">RRC-2021-38295710</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Filing Date:</div>
+                            <div class="summary-value" id="filingDate">April 8, 2025</div>
+                        </div>
+                        <div class="summary-item">
+                            <div class="summary-label">Expected Refund:</div>
+                            <div class="summary-value">$2,230.00</div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download Your Return
+                        </a>
+                        <a href="index.html" class="btn btn-secondary">
+                            <i class="fas fa-home"></i> Return to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comprehensive Walkthrough Section -->
+        <section class="section" id="walkthrough">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Step-by-Step Filing Guide</h2>
+                </div>
+                <p class="section-description text-center">Our comprehensive walkthrough will guide you through every step of filing for your Recovery Rebate Credit, even if you've never filed taxes before.</p>
+
+                <div id="walkthrough-container">
+                    <!-- Walkthrough content will be dynamically generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Tax Forms Library Section -->
+        <section class="section" id="forms-library">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Tax Forms Library</h2>
+                </div>
+                <p class="section-description text-center">Access all the forms and resources you need for your 2021 tax filing. Everything is provided within the tool - no need to search elsewhere.</p>
+
+                <div id="forms-library-container">
+                    <!-- Forms library content will be dynamically generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section class="section" id="calculator">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Recovery Rebate Credit Calculator</h2>
+                </div>
+
+                <div class="calculator-section">
+                    <div class="calculator-container">
+                        <div class="calculator-header">
+                            <h3>Check Your Eligibility</h3>
+                            <p>Use our calculator to determine if you're eligible for the Recovery Rebate Credit and how much you could receive.</p>
+                        </div>
+
+                        <form id="calculator-form" class="calculator-form">
+                            <div class="form-group">
+                                <label for="filingStatus">Filing Status for 2021
+                                    <span class="help-tooltip">
+                                        <i class="fas fa-question-circle"></i>
+                                        <span class="help-tooltip-content">This is your tax filing status for 2021, which affects your eligibility and credit amount.</span>
+                                    </span>
+                                </label>
+                                <select id="filingStatus" class="form-control" required>
+                                    <option value="">Select your filing status</option>
+                                    <option value="single">Single</option>
+                                    <option value="head">Head of Household</option>
+                                    <option value="joint">Married Filing Jointly</option>
+                                    <option value="separate">Married Filing Separately</option>
+                                    <option value="widow">Qualifying Widow(er)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="adjustedGrossIncome">2021 Adjusted Gross Income
+                                    <span class="help-tooltip">
+                                        <i class="fas fa-question-circle"></i>
+                                        <span class="help-tooltip-content">Your total income minus certain adjustments. If you don't know this exact amount, provide your best estimate.</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="adjustedGrossIncome" class="form-control" placeholder="Enter amount in dollars" required min="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dependents">Number of Qualifying Dependents in 2021
+                                    <span class="help-tooltip">
+                                        <i class="fas fa-question-circle"></i>
+                                        <span class="help-tooltip-content">Children under 17 and other qualifying dependents you claimed on your 2021 tax return.</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="dependents" class="form-control" placeholder="Enter number of dependents" min="0" value="0">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Did you receive the third Economic Impact Payment (stimulus) in 2021?
+                                    <span class="help-tooltip">
+                                        <i class="fas fa-question-circle"></i>
+                                        <span class="help-tooltip-content">The third stimulus payment was issued starting in March 2021. You may have received it by direct deposit, check, or debit card.</span>
+                                    </span>
+                                </label>
+                                <select id="receivedPayment" class="form-control" required>
+                                    <option value="">Select an option</option>
+                                    <option value="yes">Yes, I received a payment</option>
+                                    <option value="no">No, I did not receive a payment</option>
+                                    <option value="unsure">I'm not sure</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="receivedAmountGroup" style="display: none;">
+                                <label for="receivedAmount">How much did you receive?
+                                    <span class="help-tooltip">
+                                        <i class="fas fa-question-circle"></i>
+                                        <span class="help-tooltip-content">Enter the total amount you received for yourself and your dependents. If you're not sure, check your bank statements from March-April 2021 or IRS Letter 6475.</span>
+                                    </span>
+                                </label>
+                                <input type="number" id="receivedAmount" class="form-control" placeholder="Enter amount in dollars" min="0">
+                            </div>
+
+                            <div class="submit-container">
+                                <button type="submit" class="submit-btn">
+                                    <i class="fas fa-calculator"></i> Calculate My Credit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="calculator-result">
+                        <!-- Results will be dynamically generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Virtual Assistant Container -->
+    <div id="virtual-assistant-container"></div>
+
+    <!-- Time Estimates Bar -->
+    <div class="time-estimates-bar">
+        <div class="time-estimate">
+            <i class="fas fa-clock"></i>
+            <span>Time spent: <span id="total-time-spent">0 seconds</span></span>
+        </div>
+        <div class="time-estimate">
+            <i class="fas fa-hourglass-half"></i>
+            <span>Estimated time remaining: <span id="estimated-time-remaining">Calculating...</span></span>
+        </div>
+        <div class="progress-percent-container">
+            <span>Progress: <span id="progress-percent">0%</span></span>
+        </div>
+    </div>
+
+    <script type="module" src="./static/js/main-modules.js"></script>
+    <script type="module" src="./static/js/tax-filing-app.js"></script>
+    </body>
+</html>
