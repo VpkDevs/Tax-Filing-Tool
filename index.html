@@ -6,7 +6,7 @@
     <title>2021 Recovery Rebate Credit Maximizer | Automated Tax Filing</title>
     <meta name="description" content="Maximize your 2021 Recovery Rebate Credit with our automated tax filing tool. Get your stimulus payment quickly and easily.">
     <meta name="keywords" content="tax filing, recovery rebate credit, stimulus payment, tax return, IRS">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💰</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%238b5cf6%22 /><text x=%2250%22 y=%2265%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22>VK</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./static/css/modules/walkthrough.css">
     <link rel="stylesheet" href="./static/css/modules/beginner-walkthrough.css">
@@ -108,9 +108,23 @@
             color: var(--text-dark);
         }
 
-        .logo i {
-            font-size: 1.8rem;
-            color: var(--accent);
+        .logo-initials {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            background-color: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .dark-mode .logo-initials {
+            background-color: var(--accent-dark);
         }
 
         .brand-tagline {
@@ -2500,7 +2514,7 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <i class="fas fa-hand-holding-dollar"></i>
+                <div class="logo-initials">VK</div>
                 <div>
                     <span>RecoveryRebateMaximizer</span>
                     <div class="brand-tagline">Automated 2021 Tax Filing System</div>
@@ -3635,5 +3649,30 @@
 
     <script type="module" src="./static/js/main-modules.js"></script>
     <script type="module" src="./static/js/tax-filing-app.js"></script>
+
+    <!-- Non-module script for dark mode toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                const modeToggle = document.getElementById('modeToggle');
+                if (modeToggle) {
+                    modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            }
+
+            // Add event listener for dark mode toggle
+            const modeToggle = document.getElementById('modeToggle');
+            if (modeToggle) {
+                modeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDarkMode);
+                    this.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                });
+            }
+        });
+    </script>
     </body>
 </html>

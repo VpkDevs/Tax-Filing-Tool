@@ -114,3 +114,6 @@ function toggleDarkMode() {
         modeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     }
 }
+
+// Export the toggleDarkMode function to make it globally available
+window.toggleDarkMode = toggleDarkMode;
