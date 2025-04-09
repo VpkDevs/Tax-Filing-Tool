@@ -265,81 +265,184 @@ const TaxFilingApp = (function() {
     // Public methods
     return {
         init: function() {
-            // Initialize progress tracker
-            ProgressTracker.init(5); // 5 total steps in the filing process
+            try {
+                console.log('Initializing Tax Filing Application...');
 
-            // Initialize modules
-            TaxWalkthrough.init('walkthrough-container');
-            TaxForms.generateFormLibrary('forms-library-container');
-            RebateCalculator.initCalculator('calculator-form', 'calculator-result');
+                // Initialize progress tracker
+                if (typeof ProgressTracker !== 'undefined') {
+                    console.log('Initializing Progress Tracker...');
+                    ProgressTracker.init(5); // 5 total steps in the filing process
+                } else {
+                    console.warn('Progress Tracker module not found.');
+                }
 
-            // Initialize document analyzer for step 2
-            DocumentAnalyzer.initDocumentUploader('document-upload-area', 'document-preview-area', (result) => {
-                console.log('Document analyzed:', result);
-                // Store document data for use in the filing process
-                ProgressTracker.saveData('documentData', result);
+                // Initialize walkthrough module
+                if (typeof TaxWalkthrough !== 'undefined') {
+                    const walkthroughContainer = document.getElementById('walkthrough-container');
+                    if (walkthroughContainer) {
+                        console.log('Initializing Tax Walkthrough...');
+                        TaxWalkthrough.init('walkthrough-container');
+                    } else {
+                        console.warn('Walkthrough container not found.');
+                    }
+                } else {
+                    console.warn('Tax Walkthrough module not found.');
+                }
 
-                // Show success message
-                const successMessage = document.createElement('div');
-                successMessage.className = 'alert alert-success';
-                successMessage.innerHTML = `
-                    <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="alert-content">
-                        <h4 class="alert-title">Document Added Successfully</h4>
-                        <p>We've extracted the information from your ${result.documentName} and added it to your return.</p>
-                    </div>
-                `;
-                document.getElementById('document-preview-area').appendChild(successMessage);
-            });
+                // Initialize forms library
+                if (typeof TaxForms !== 'undefined') {
+                    const formsContainer = document.getElementById('forms-library-container');
+                    if (formsContainer) {
+                        console.log('Initializing Tax Forms Library...');
+                        TaxForms.generateFormLibrary('forms-library-container');
+                    } else {
+                        console.warn('Forms library container not found.');
+                    }
+                } else {
+                    console.warn('Tax Forms module not found.');
+                }
 
-            // Initialize virtual assistant
-            VirtualAssistant.init('virtual-assistant-container');
+                // Initialize rebate calculator
+                if (typeof RebateCalculator !== 'undefined') {
+                    const calculatorForm = document.getElementById('calculator-form');
+                    const calculatorResult = document.getElementById('calculator-result');
+                    if (calculatorForm && calculatorResult) {
+                        console.log('Initializing Rebate Calculator...');
+                        RebateCalculator.initCalculator('calculator-form', 'calculator-result');
+                    } else {
+                        console.warn('Calculator form or result container not found.');
+                    }
+                } else {
+                    console.warn('Rebate Calculator module not found.');
+                }
 
-            // Add virtual assistant toggle button
-            const assistantButton = document.createElement('button');
-            assistantButton.className = 'virtual-assistant-button';
-            assistantButton.innerHTML = '<i class="fas fa-headset"></i>';
-            assistantButton.setAttribute('aria-label', 'Get help from virtual assistant');
-            document.body.appendChild(assistantButton);
+                // Initialize document analyzer for step 2
+                if (typeof DocumentAnalyzer !== 'undefined') {
+                    const uploadArea = document.getElementById('document-upload-area');
+                    const previewArea = document.getElementById('document-preview-area');
+                    if (uploadArea && previewArea) {
+                        console.log('Initializing Document Analyzer...');
+                        DocumentAnalyzer.initDocumentUploader('document-upload-area', 'document-preview-area', (result) => {
+                            console.log('Document analyzed:', result);
+                            // Store document data for use in the filing process
+                            if (typeof ProgressTracker !== 'undefined') {
+                                ProgressTracker.saveData('documentData', result);
+                            }
 
-            assistantButton.addEventListener('click', () => {
-                VirtualAssistant.toggle('virtual-assistant-container');
-            });
+                            // Show success message
+                            try {
+                                const successMessage = document.createElement('div');
+                                successMessage.className = 'alert alert-success';
+                                successMessage.innerHTML = `
+                                    <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="alert-content">
+                                        <h4 class="alert-title">Document Added Successfully</h4>
+                                        <p>We've extracted the information from your ${result.documentName || 'document'} and added it to your return.</p>
+                                    </div>
+                                `;
+                                document.getElementById('document-preview-area').appendChild(successMessage);
+                            } catch (error) {
+                                console.error('Error showing document success message:', error);
+                            }
+                        });
+                    } else {
+                        console.warn('Document upload or preview area not found.');
+                    }
+                } else {
+                    console.warn('Document Analyzer module not found.');
+                }
 
-            // Initialize filing steps navigation
-            this.initFilingSteps();
+                // Initialize virtual assistant
+                if (typeof VirtualAssistant !== 'undefined') {
+                    const assistantContainer = document.getElementById('virtual-assistant-container');
+                    if (assistantContainer) {
+                        console.log('Initializing Virtual Assistant...');
+                        VirtualAssistant.init('virtual-assistant-container');
+                    } else {
+                        console.warn('Virtual assistant container not found.');
+                    }
+                } else {
+                    console.warn('Virtual Assistant module not found.');
+                }
 
-            // Initialize form input masks
-            this.initInputMasks();
+                // Add virtual assistant toggle button
+                if (typeof VirtualAssistant !== 'undefined') {
+                    try {
+                        const assistantButton = document.createElement('button');
+                        assistantButton.className = 'virtual-assistant-button';
+                        assistantButton.innerHTML = '<i class="fas fa-headset"></i>';
+                        assistantButton.setAttribute('aria-label', 'Get help from virtual assistant');
+                        document.body.appendChild(assistantButton);
 
-            // Initialize dark mode toggle
-            this.initDarkMode();
+                        assistantButton.addEventListener('click', () => {
+                            VirtualAssistant.toggle('virtual-assistant-container');
+                        });
+                    } catch (error) {
+                        console.error('Error creating virtual assistant button:', error);
+                    }
+                }
 
-            // Initialize mobile menu
-            this.initMobileMenu();
+                // Initialize filing steps navigation
+                console.log('Initializing filing steps navigation...');
+                this.initFilingSteps();
 
-            // Initialize accordion functionality
-            this.initAccordion();
+                // Initialize form input masks
+                console.log('Initializing form input masks...');
+                this.initInputMasks();
 
-            // Initialize back to top button
-            this.initBackToTop();
+                // Initialize dark mode toggle
+                console.log('Initializing dark mode toggle...');
+                this.initDarkMode();
 
-            // Initialize virtual helper
-            this.initVirtualHelper();
+                // Initialize mobile menu
+                console.log('Initializing mobile menu...');
+                this.initMobileMenu();
 
-            // Load saved form data
-            loadFormData();
+                // Initialize accordion functionality
+                console.log('Initializing accordion functionality...');
+                this.initAccordion();
 
-            // Add modern theme stylesheet
-            const modernTheme = document.createElement('link');
-            modernTheme.rel = 'stylesheet';
-            modernTheme.href = '/static/css/modern-theme.css';
-            document.head.appendChild(modernTheme);
+                // Initialize back to top button
+                console.log('Initializing back to top button...');
+                this.initBackToTop();
+
+                // Initialize virtual helper
+                console.log('Initializing virtual helper...');
+                this.initVirtualHelper();
+
+                // Load saved form data
+                console.log('Loading saved form data...');
+                loadFormData();
+
+                // Add modern theme stylesheet
+                try {
+                    console.log('Adding modern theme stylesheet...');
+                    const modernTheme = document.createElement('link');
+                    modernTheme.rel = 'stylesheet';
+                    modernTheme.href = './static/css/modern-theme.css';
+                    document.head.appendChild(modernTheme);
+                } catch (error) {
+                    console.error('Error adding modern theme stylesheet:', error);
+                }
+
+                console.log('Tax Filing Application initialized successfully!');
+            } catch (error) {
+                console.error('Error initializing Tax Filing Application:', error);
+            }
         },
 
         initFilingSteps: function() {
-            const nextButtons = document.querySelectorAll('.next-step');
-            const prevButtons = document.querySelectorAll('.prev-step');
+            try {
+                const nextButtons = document.querySelectorAll('.next-step');
+                const prevButtons = document.querySelectorAll('.prev-step');
+
+                if (nextButtons.length === 0) {
+                    console.warn('No next step buttons found.');
+                }
+
+                if (prevButtons.length === 0) {
+                    console.warn('No previous step buttons found.');
+                }
 
             // Next step buttons
             nextButtons.forEach(button => {
@@ -502,6 +605,11 @@ const TaxFilingApp = (function() {
 
             // Initialize time estimates
             this.updateTimeEstimates();
+
+            console.log('Filing steps initialized successfully!');
+            } catch (error) {
+                console.error('Error initializing filing steps:', error);
+            }
         },
 
         collectStepData: function(stepNumber) {

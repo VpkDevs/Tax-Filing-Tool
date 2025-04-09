@@ -919,23 +919,45 @@ const TaxWalkthrough = (function() {
         // Initialize the walkthrough
         init: function(containerId) {
             const container = document.getElementById(containerId);
-            if (!container) return;
+            if (!container) {
+                console.warn(`Walkthrough container with ID '${containerId}' not found.`);
+                return false;
+            }
 
-            // Create walkthrough UI
-            this.renderWalkthrough(container);
-            this.showStep(0);
+            try {
+                // Create walkthrough UI
+                this.renderWalkthrough(container);
+                this.showStep(0);
 
-            // Add event listeners
-            document.getElementById('walkthrough-next').addEventListener('click', () => this.nextStep());
-            document.getElementById('walkthrough-prev').addEventListener('click', () => this.prevStep());
+                // Add event listeners
+                const nextButton = document.getElementById('walkthrough-next');
+                const prevButton = document.getElementById('walkthrough-prev');
 
-            // Add progress indicator listeners
-            document.querySelectorAll('.walkthrough-progress-step').forEach((step, index) => {
-                step.addEventListener('click', () => this.showStep(index));
-            });
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => this.nextStep());
+                } else {
+                    console.warn('Walkthrough next button not found.');
+                }
 
-            // Show beginner intro for first-time users
-            this.showBeginnerIntro();
+                if (prevButton) {
+                    prevButton.addEventListener('click', () => this.prevStep());
+                } else {
+                    console.warn('Walkthrough previous button not found.');
+                }
+
+                // Add progress indicator listeners
+                document.querySelectorAll('.walkthrough-progress-step').forEach((step, index) => {
+                    step.addEventListener('click', () => this.showStep(index));
+                });
+
+                // Show beginner intro for first-time users
+                this.showBeginnerIntro();
+
+                return true;
+            } catch (error) {
+                console.error('Error initializing walkthrough:', error);
+                return false;
+            }
         },
 
         // Show a special intro for absolute beginners
@@ -1094,113 +1116,188 @@ const TaxWalkthrough = (function() {
 
         // Show a specific step
         showStep: function(stepIndex) {
-            if (stepIndex < 0 || stepIndex >= totalSteps) return;
-
-            currentStep = stepIndex;
-            const step = steps[stepIndex];
-
-            // Update content
-            document.getElementById('walkthrough-title').textContent = step.title;
-            document.getElementById('current-step').textContent = stepIndex + 1;
-            document.getElementById('walkthrough-content').innerHTML = step.content;
-
-            // Update resources
-            const resourcesList = document.getElementById('walkthrough-resources-list');
-            resourcesList.innerHTML = step.resources.map(resource => `
-                <div class="resource-item">
-                    <h5 class="resource-title">
-                        <i class="fas fa-file-alt"></i> ${resource.name}
-                    </h5>
-                    <p>${resource.description}</p>
-                    <a href="${resource.link}" class="download-btn" target="_blank">
-                        <i class="fas fa-download"></i> Access Resource
-                    </a>
-                </div>
-            `).join('');
-
-            // Update navigation buttons
-            document.getElementById('walkthrough-prev').disabled = stepIndex === 0;
-            document.getElementById('walkthrough-next').textContent = stepIndex === totalSteps - 1 ? 'Start Filing' : 'Next';
-            document.getElementById('walkthrough-next').innerHTML = stepIndex === totalSteps - 1 ?
-                'Start Filing <i class="fas fa-check"></i>' :
-                'Next <i class="fas fa-arrow-right"></i>';
-
-            // Update progress indicators
-            document.querySelectorAll('.walkthrough-progress-step').forEach((el, index) => {
-                el.classList.remove('active', 'completed');
-                if (index === stepIndex) {
-                    el.classList.add('active');
-                } else if (index < stepIndex) {
-                    el.classList.add('completed');
+            try {
+                if (stepIndex < 0 || stepIndex >= totalSteps) {
+                    console.warn(`Invalid step index: ${stepIndex}. Must be between 0 and ${totalSteps - 1}.`);
+                    return false;
                 }
-            });
 
-            // Add event listeners to form preview links
-            document.querySelectorAll('.form-preview-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const formId = link.getAttribute('data-form');
-                    this.showFormPreview(formId);
+                currentStep = stepIndex;
+                const step = steps[stepIndex];
+
+                // Update content
+                const titleElement = document.getElementById('walkthrough-title');
+                const currentStepElement = document.getElementById('current-step');
+                const contentElement = document.getElementById('walkthrough-content');
+                const resourcesList = document.getElementById('walkthrough-resources-list');
+                const prevButton = document.getElementById('walkthrough-prev');
+                const nextButton = document.getElementById('walkthrough-next');
+
+                // Check if all required elements exist
+                if (!titleElement || !currentStepElement || !contentElement || !resourcesList || !prevButton || !nextButton) {
+                    console.error('One or more required walkthrough elements not found.');
+                    return false;
+                }
+
+                // Update content
+                titleElement.textContent = step.title;
+                currentStepElement.textContent = stepIndex + 1;
+                contentElement.innerHTML = step.content;
+
+                // Update resources
+                if (step.resources && Array.isArray(step.resources)) {
+                    resourcesList.innerHTML = step.resources.map(resource => `
+                        <div class="resource-item">
+                            <h5 class="resource-title">
+                                <i class="fas fa-file-alt"></i> ${resource.name}
+                            </h5>
+                            <p>${resource.description}</p>
+                            <a href="${resource.link}" class="download-btn" target="_blank">
+                                <i class="fas fa-download"></i> Access Resource
+                            </a>
+                        </div>
+                    `).join('');
+                } else {
+                    resourcesList.innerHTML = '<div class="no-resources">No additional resources for this step.</div>';
+                }
+
+                // Update navigation buttons
+                prevButton.disabled = stepIndex === 0;
+                nextButton.textContent = stepIndex === totalSteps - 1 ? 'Start Filing' : 'Next';
+                nextButton.innerHTML = stepIndex === totalSteps - 1 ?
+                    'Start Filing <i class="fas fa-check"></i>' :
+                    'Next <i class="fas fa-arrow-right"></i>';
+
+                // Update progress indicators
+                document.querySelectorAll('.walkthrough-progress-step').forEach((el, index) => {
+                    el.classList.remove('active', 'completed');
+                    if (index === stepIndex) {
+                        el.classList.add('active');
+                    } else if (index < stepIndex) {
+                        el.classList.add('completed');
+                    }
                 });
-            });
+
+                // Add event listeners to form preview links
+                document.querySelectorAll('.form-preview-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const formId = link.getAttribute('data-form');
+                        this.showFormPreview(formId);
+                    });
+                });
+
+                return true;
+            } catch (error) {
+                console.error('Error showing walkthrough step:', error);
+                return false;
+            }
         },
 
         // Navigate to next step
         nextStep: function() {
-            if (currentStep < totalSteps - 1) {
-                this.showStep(currentStep + 1);
-            } else {
-                // Start the actual filing process
-                document.querySelector('.filing-tool').style.display = 'block';
-                document.querySelector('.walkthrough-container').style.display = 'none';
-                // Show the first filing step
-                document.getElementById('filingStep1').classList.add('active');
+            try {
+                if (currentStep < totalSteps - 1) {
+                    return this.showStep(currentStep + 1);
+                } else {
+                    // Start the actual filing process
+                    const filingTool = document.querySelector('.filing-tool');
+                    const walkthroughContainer = document.querySelector('.walkthrough-container');
+                    const filingStep1 = document.getElementById('filingStep1');
+
+                    if (!filingTool || !walkthroughContainer || !filingStep1) {
+                        console.error('Required filing tool elements not found.');
+                        return false;
+                    }
+
+                    filingTool.style.display = 'block';
+                    walkthroughContainer.style.display = 'none';
+                    filingStep1.classList.add('active');
+                    return true;
+                }
+            } catch (error) {
+                console.error('Error navigating to next step:', error);
+                return false;
             }
         },
 
         // Navigate to previous step
         prevStep: function() {
-            if (currentStep > 0) {
-                this.showStep(currentStep - 1);
+            try {
+                if (currentStep > 0) {
+                    return this.showStep(currentStep - 1);
+                }
+                return true; // No action needed but not an error
+            } catch (error) {
+                console.error('Error navigating to previous step:', error);
+                return false;
             }
         },
 
         // Show tax form preview
         showFormPreview: function(formId) {
-            // Create modal for form preview
-            const modal = document.createElement('div');
-            modal.className = 'form-preview-modal';
-            modal.innerHTML = `
-                <div class="form-preview-content">
-                    <div class="form-preview-header">
-                        <h3>2021 ${formId === '1040' ? 'Form 1040' : 'Schedule ' + formId.replace('schedule', '')}</h3>
-                        <button class="form-preview-close"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="form-preview-body">
-                        <iframe src="./static/forms/${formId.toLowerCase()}_2021.pdf" width="100%" height="500px"></iframe>
-                    </div>
-                    <div class="form-preview-footer">
-                        <a href="./static/forms/${formId.toLowerCase()}_2021.pdf" download class="btn btn-primary">
-                            <i class="fas fa-download"></i> Download Form
-                        </a>
-                        <button class="btn btn-secondary form-preview-close">Close</button>
-                    </div>
-                </div>
-            `;
-
-            document.body.appendChild(modal);
-
-            // Add event listeners
-            modal.querySelector('.form-preview-close').addEventListener('click', () => {
-                document.body.removeChild(modal);
-            });
-
-            // Close on click outside
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    document.body.removeChild(modal);
+            try {
+                if (!formId) {
+                    console.error('Invalid form ID provided to showFormPreview');
+                    return false;
                 }
-            });
+
+                // Create modal for form preview
+                const modal = document.createElement('div');
+                modal.className = 'form-preview-modal';
+
+                // Safely determine form title
+                let formTitle = '';
+                try {
+                    formTitle = formId === '1040' ? 'Form 1040' : 'Schedule ' + formId.replace('schedule', '');
+                } catch (e) {
+                    formTitle = `Form ${formId}`; // Fallback title
+                }
+
+                modal.innerHTML = `
+                    <div class="form-preview-content">
+                        <div class="form-preview-header">
+                            <h3>2021 ${formTitle}</h3>
+                            <button class="form-preview-close"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="form-preview-body">
+                            <iframe src="./static/forms/${formId.toLowerCase()}_2021.pdf" width="100%" height="500px"></iframe>
+                        </div>
+                        <div class="form-preview-footer">
+                            <a href="./static/forms/${formId.toLowerCase()}_2021.pdf" download class="btn btn-primary">
+                                <i class="fas fa-download"></i> Download Form
+                            </a>
+                            <button class="btn btn-secondary form-preview-close">Close</button>
+                        </div>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+
+                // Add event listeners
+                const closeButtons = modal.querySelectorAll('.form-preview-close');
+                if (closeButtons && closeButtons.length > 0) {
+                    closeButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            if (document.body.contains(modal)) {
+                                document.body.removeChild(modal);
+                            }
+                        });
+                    });
+                }
+
+                // Close on click outside
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal && document.body.contains(modal)) {
+                        document.body.removeChild(modal);
+                    }
+                });
+
+                return true;
+            } catch (error) {
+                console.error('Error showing form preview:', error);
+                return false;
+            }
         }
     };
 })();

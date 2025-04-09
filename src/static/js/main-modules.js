@@ -45,17 +45,38 @@ try {
 
 // Initialize modules when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the walkthrough module
-    TaxWalkthrough.init('walkthrough-container');
+    // Check if walkthrough container exists before initializing
+    const walkthroughContainer = document.getElementById('walkthrough-container');
+    if (walkthroughContainer) {
+        console.log('Initializing walkthrough module...');
+        TaxWalkthrough.init('walkthrough-container');
+    } else {
+        console.warn('Walkthrough container not found. Skipping initialization.');
+    }
 
-    // Initialize the micro-steps module
-    MicroSteps.init();
+    // Initialize the micro-steps module if it exists
+    if (typeof MicroSteps !== 'undefined') {
+        console.log('Initializing micro-steps module...');
+        MicroSteps.init();
+    }
 
     // Initialize modules that were dynamically imported
-    if (typeof VirtualAssistant !== 'undefined') VirtualAssistant.init();
-    if (typeof DocumentAnalyzer !== 'undefined') DocumentAnalyzer.init();
-    if (typeof Calculator !== 'undefined') Calculator.init();
-    if (typeof TimeEstimates !== 'undefined') TimeEstimates.init();
+    if (typeof VirtualAssistant !== 'undefined') {
+        console.log('Initializing virtual assistant module...');
+        VirtualAssistant.init();
+    }
+    if (typeof DocumentAnalyzer !== 'undefined') {
+        console.log('Initializing document analyzer module...');
+        DocumentAnalyzer.init();
+    }
+    if (typeof Calculator !== 'undefined') {
+        console.log('Initializing calculator module...');
+        Calculator.init();
+    }
+    if (typeof TimeEstimates !== 'undefined') {
+        console.log('Initializing time estimates module...');
+        TimeEstimates.init();
+    }
 
     // Dark mode toggle
     const modeToggle = document.getElementById('modeToggle');
