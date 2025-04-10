@@ -42,7 +42,7 @@ const VirtualAssistant = (function() {
                 answer: `The Recovery Rebate Credit is claimed on Line 30 of your 2021 Form 1040 or Form 1040-SR.`
             }
         ],
-        
+
         // Prior year filing information
         'prior_year_filing': [
             {
@@ -69,7 +69,7 @@ const VirtualAssistant = (function() {
                 answer: `If you owe taxes for 2021, you should file as soon as possible. The IRS charges penalties and interest on unpaid taxes, which continue to accrue from the original due date until the tax is paid in full.`
             }
         ],
-        
+
         // Filing status information
         'filing_status': [
             {
@@ -95,7 +95,7 @@ const VirtualAssistant = (function() {
                 This status provides more favorable tax rates and a higher standard deduction than the Single filing status.`
             }
         ],
-        
+
         // Document information
         'documents': [
             {
@@ -123,7 +123,7 @@ const VirtualAssistant = (function() {
                 For missing W-2s, you can also contact the Social Security Administration or complete Form 4852 (Substitute for Form W-2).`
             }
         ],
-        
+
         // Refund information
         'refunds': [
             {
@@ -141,7 +141,7 @@ const VirtualAssistant = (function() {
                 answer: `Yes, you have three years from the original due date to file a return and claim a refund. For 2021 tax returns, the deadline is April 18, 2025. If you don't file by this date, you'll lose your refund.`
             }
         ],
-        
+
         // General tax questions
         'general': [
             {
@@ -169,7 +169,7 @@ const VirtualAssistant = (function() {
             }
         ]
     };
-    
+
     // Common user intents and their mappings to knowledge base categories
     const intents = {
         'what is recovery rebate credit': 'rebate_credit',
@@ -183,7 +183,7 @@ const VirtualAssistant = (function() {
         'received stimulus': 'rebate_credit',
         'check stimulus': 'rebate_credit',
         'line 30': 'rebate_credit',
-        
+
         'file previous year': 'prior_year_filing',
         'file 2021': 'prior_year_filing',
         'prior year': 'prior_year_filing',
@@ -193,28 +193,28 @@ const VirtualAssistant = (function() {
         'mail tax return': 'prior_year_filing',
         'deadline for 2021': 'prior_year_filing',
         'owe taxes 2021': 'prior_year_filing',
-        
+
         'filing status': 'filing_status',
         'which status': 'filing_status',
         'head of household': 'filing_status',
         'married filing': 'filing_status',
         'single status': 'filing_status',
         'qualifying widow': 'filing_status',
-        
+
         'documents needed': 'documents',
         'what documents': 'documents',
         'missing documents': 'documents',
         'missing w2': 'documents',
         'lost tax forms': 'documents',
         'need forms': 'documents',
-        
+
         'when refund': 'refunds',
         'get my refund': 'refunds',
         'refund status': 'refunds',
         'refund deadline': 'refunds',
         'check refund': 'refunds',
         'direct deposit': 'refunds',
-        
+
         'tax credits': 'general',
         'credits 2021': 'general',
         'child tax credit': 'general',
@@ -222,7 +222,7 @@ const VirtualAssistant = (function() {
         'standard deduction': 'general',
         'deduction amount': 'general'
     };
-    
+
     // Greeting messages
     const greetings = [
         "Hello! I'm your virtual tax assistant. How can I help you with your 2021 Recovery Rebate Credit filing today?",
@@ -230,7 +230,7 @@ const VirtualAssistant = (function() {
         "Welcome! I'm your tax filing assistant. How can I help you claim your Recovery Rebate Credit?",
         "Greetings! I'm here to make your 2021 tax filing easier. What questions do you have?"
     ];
-    
+
     // Fallback messages
     const fallbacks = [
         "I'm not sure I understand your question. Could you rephrase it or ask about a specific topic like the Recovery Rebate Credit, filing status, or required documents?",
@@ -238,25 +238,25 @@ const VirtualAssistant = (function() {
         "I'm still learning and don't have an answer for that. Can I help you with something related to the 2021 Recovery Rebate Credit or tax filing process?",
         "I'm not able to answer that question. Would you like me to explain how the Recovery Rebate Credit works or what documents you need for filing?"
     ];
-    
+
     // Private methods
     function detectIntent(message) {
         const normalizedMessage = message.toLowerCase();
-        
+
         // Check for direct matches in intents
         for (const [pattern, category] of Object.entries(intents)) {
             if (normalizedMessage.includes(pattern)) {
                 return category;
             }
         }
-        
+
         // If no direct match, try to find the best matching category
         let bestCategory = null;
         let highestScore = 0;
-        
+
         for (const category in knowledgeBase) {
             const questions = knowledgeBase[category].map(item => item.question.toLowerCase());
-            
+
             for (const question of questions) {
                 const score = calculateSimilarity(normalizedMessage, question);
                 if (score > highestScore && score > 0.3) { // Threshold for similarity
@@ -265,36 +265,36 @@ const VirtualAssistant = (function() {
                 }
             }
         }
-        
+
         return bestCategory || 'general';
     }
-    
+
     function calculateSimilarity(str1, str2) {
         // Simple word overlap similarity
         const words1 = str1.split(/\s+/);
         const words2 = str2.split(/\s+/);
-        
+
         const uniqueWords = new Set([...words1, ...words2]);
         let matchCount = 0;
-        
+
         for (const word of words1) {
             if (words2.includes(word) && word.length > 2) { // Only count meaningful words
                 matchCount++;
             }
         }
-        
+
         return matchCount / uniqueWords.size;
     }
-    
+
     function findBestResponse(category, message) {
         if (!knowledgeBase[category]) {
             return getRandomFallback();
         }
-        
+
         const normalizedMessage = message.toLowerCase();
         let bestResponse = null;
         let highestScore = 0;
-        
+
         for (const item of knowledgeBase[category]) {
             const score = calculateSimilarity(normalizedMessage, item.question.toLowerCase());
             if (score > highestScore) {
@@ -302,27 +302,27 @@ const VirtualAssistant = (function() {
                 bestResponse = item.answer;
             }
         }
-        
+
         // If no good match found, return the first answer in the category
         return bestResponse || knowledgeBase[category][0].answer;
     }
-    
+
     function getRandomGreeting() {
         const index = Math.floor(Math.random() * greetings.length);
         return greetings[index];
     }
-    
+
     function getRandomFallback() {
         const index = Math.floor(Math.random() * fallbacks.length);
         return fallbacks[index];
     }
-    
+
     // Public methods
     return {
         init: function(containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            
+
             // Create assistant UI
             const assistantHtml = `
                 <div class="assistant-container">
@@ -356,16 +356,16 @@ const VirtualAssistant = (function() {
                     </div>
                 </div>
             `;
-            
+
             container.innerHTML = assistantHtml;
-            
+
             // Get UI elements
             const messagesContainer = container.querySelector('.assistant-messages');
             const inputField = container.querySelector('.assistant-input input');
             const sendButton = container.querySelector('.assistant-send');
             const closeButton = container.querySelector('.assistant-close');
             const suggestionButtons = container.querySelectorAll('.suggestion-btn');
-            
+
             // Add event listeners
             sendButton.addEventListener('click', () => {
                 const message = inputField.value.trim();
@@ -374,36 +374,36 @@ const VirtualAssistant = (function() {
                     inputField.value = '';
                 }
             });
-            
+
             inputField.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     sendButton.click();
                 }
             });
-            
+
             closeButton.addEventListener('click', () => {
                 container.classList.remove('active');
             });
-            
+
             suggestionButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const message = button.textContent;
                     this.sendMessage(message, messagesContainer);
                 });
             });
-            
+
             // Send initial greeting
             this.addMessage(getRandomGreeting(), 'assistant', messagesContainer);
         },
-        
+
         sendMessage: function(message, messagesContainer) {
             // Add user message to chat
             this.addMessage(message, 'user', messagesContainer);
-            
+
             // Detect intent and find response
             const intent = detectIntent(message);
             const response = findBestResponse(intent, message);
-            
+
             // Add typing indicator
             const typingIndicator = document.createElement('div');
             typingIndicator.className = 'message assistant typing';
@@ -418,24 +418,24 @@ const VirtualAssistant = (function() {
             `;
             messagesContainer.appendChild(typingIndicator);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            
+
             // Simulate typing delay
             setTimeout(() => {
                 // Remove typing indicator
                 messagesContainer.removeChild(typingIndicator);
-                
+
                 // Add assistant response
                 this.addMessage(response, 'assistant', messagesContainer);
-                
+
                 // Add follow-up suggestions based on intent
                 this.addSuggestions(intent, messagesContainer);
             }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
         },
-        
+
         addMessage: function(content, sender, container) {
             const messageElement = document.createElement('div');
             messageElement.className = `message ${sender}`;
-            
+
             if (sender === 'assistant') {
                 messageElement.innerHTML = `
                     <div class="message-avatar">
@@ -451,18 +451,18 @@ const VirtualAssistant = (function() {
                     </div>
                 `;
             }
-            
+
             container.appendChild(messageElement);
             container.scrollTop = container.scrollHeight;
         },
-        
+
         addSuggestions: function(intent, container) {
             // Create follow-up suggestions based on the current intent
             const suggestionsElement = document.createElement('div');
             suggestionsElement.className = 'message-suggestions';
-            
+
             let suggestions = [];
-            
+
             switch (intent) {
                 case 'rebate_credit':
                     suggestions = [
@@ -506,7 +506,7 @@ const VirtualAssistant = (function() {
                         'What documents do I need?'
                     ];
             }
-            
+
             suggestionsElement.innerHTML = `
                 <div class="suggestions-label">Related Questions:</div>
                 <div class="suggestions-buttons">
@@ -515,10 +515,10 @@ const VirtualAssistant = (function() {
                     `).join('')}
                 </div>
             `;
-            
+
             container.appendChild(suggestionsElement);
             container.scrollTop = container.scrollHeight;
-            
+
             // Add event listeners to suggestion buttons
             const suggestionButtons = suggestionsElement.querySelectorAll('.suggestion-btn');
             suggestionButtons.forEach(button => {
@@ -528,12 +528,12 @@ const VirtualAssistant = (function() {
                 });
             });
         },
-        
+
         toggle: function(containerId) {
             const container = document.getElementById(containerId);
             if (container) {
                 container.classList.toggle('active');
-                
+
                 // If activating, focus on input field
                 if (container.classList.contains('active')) {
                     const inputField = container.querySelector('.assistant-input input');
@@ -542,8 +542,102 @@ const VirtualAssistant = (function() {
                             inputField.focus();
                         }, 300);
                     }
+
+                    // For mobile: prevent body scrolling when assistant is open
+                    document.body.classList.add('assistant-open');
+
+                    // Add swipe down to close functionality for mobile
+                    this.initSwipeToClose(container);
+                } else {
+                    // Re-enable body scrolling when assistant is closed
+                    document.body.classList.remove('assistant-open');
                 }
             }
+        },
+
+        // Initialize swipe down to close functionality for mobile
+        initSwipeToClose: function(container) {
+            let touchStartY = 0;
+            let touchEndY = 0;
+            const swipeThreshold = 100; // Minimum distance for a swipe
+            const header = container.querySelector('.assistant-header');
+
+            if (!header) return;
+
+            // Add visual indicator for swipe
+            if (!header.querySelector('.swipe-indicator')) {
+                const indicator = document.createElement('div');
+                indicator.className = 'swipe-indicator';
+                indicator.innerHTML = '<div class="indicator-line"></div>';
+                header.appendChild(indicator);
+
+                // Add CSS for the indicator
+                if (!document.getElementById('swipe-indicator-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'swipe-indicator-style';
+                    style.textContent = `
+                        .swipe-indicator {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            padding: 5px 0;
+                        }
+                        .indicator-line {
+                            width: 40px;
+                            height: 4px;
+                            background-color: rgba(255,255,255,0.3);
+                            border-radius: 2px;
+                        }
+                        .swiping .indicator-line {
+                            background-color: rgba(255,255,255,0.6);
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+
+            // Track touch start position
+            header.addEventListener('touchstart', function(e) {
+                touchStartY = e.changedTouches[0].screenY;
+                header.classList.add('swiping');
+            }, { passive: true });
+
+            // Track touch move for visual feedback
+            header.addEventListener('touchmove', function(e) {
+                touchEndY = e.changedTouches[0].screenY;
+                const distance = touchEndY - touchStartY;
+
+                if (distance > 0) { // Only allow downward swipe
+                    // Add visual feedback
+                    container.style.transform = `translateY(${Math.min(distance/3, 50)}px)`;
+                    container.style.opacity = 1 - (Math.min(distance, 150) / 300);
+                }
+            }, { passive: true });
+
+            // Handle touch end
+            header.addEventListener('touchend', function(e) {
+                touchEndY = e.changedTouches[0].screenY;
+                const distance = touchEndY - touchStartY;
+
+                // Reset styles
+                container.style.transform = '';
+                container.style.opacity = '';
+                header.classList.remove('swiping');
+
+                // If swiped down far enough, close the assistant
+                if (distance > swipeThreshold) {
+                    container.classList.remove('active');
+                    document.body.classList.remove('assistant-open');
+                }
+            }, { passive: true });
+
+            // Handle touch cancel
+            header.addEventListener('touchcancel', function() {
+                // Reset styles
+                container.style.transform = '';
+                container.style.opacity = '';
+                header.classList.remove('swiping');
+            }, { passive: true });
         }
     };
 })();

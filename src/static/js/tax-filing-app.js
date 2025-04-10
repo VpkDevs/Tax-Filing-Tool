@@ -695,6 +695,13 @@ const TaxFilingApp = (function() {
             // SSN mask (XXX-XX-XXXX)
             const ssnInput = document.getElementById('ssn');
             if (ssnInput) {
+                // Set input type attributes for better mobile keyboards
+                ssnInput.setAttribute('inputmode', 'numeric');
+                ssnInput.setAttribute('pattern', '[0-9]*');
+
+                // Add placeholder for mobile
+                ssnInput.setAttribute('placeholder', 'XXX-XX-XXXX');
+
                 ssnInput.addEventListener('input', function(e) {
                     let value = e.target.value.replace(/\D/g, '');
                     if (value.length > 9) {
@@ -709,11 +716,28 @@ const TaxFilingApp = (function() {
 
                     e.target.value = value;
                 });
+
+                // Add focus and blur events for mobile
+                ssnInput.addEventListener('focus', function() {
+                    // Add a class that can be styled
+                    this.parentElement.classList.add('input-focused');
+                });
+
+                ssnInput.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('input-focused');
+                });
             }
 
             // Phone number mask ((XXX) XXX-XXXX)
             const phoneInput = document.getElementById('phoneNumber');
             if (phoneInput) {
+                // Set input type attributes for better mobile keyboards
+                phoneInput.setAttribute('inputmode', 'tel');
+                phoneInput.setAttribute('pattern', '[0-9]*');
+
+                // Add placeholder for mobile
+                phoneInput.setAttribute('placeholder', '(XXX) XXX-XXXX');
+
                 phoneInput.addEventListener('input', function(e) {
                     let value = e.target.value.replace(/\D/g, '');
                     if (value.length > 10) {
@@ -728,7 +752,55 @@ const TaxFilingApp = (function() {
 
                     e.target.value = value;
                 });
+
+                // Add focus and blur events for mobile
+                phoneInput.addEventListener('focus', function() {
+                    this.parentElement.classList.add('input-focused');
+                });
+
+                phoneInput.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('input-focused');
+                });
             }
+
+            // Initialize all other inputs for mobile
+            this.initMobileInputs();
+        },
+
+        // Initialize mobile-friendly inputs
+        initMobileInputs: function() {
+            // Email inputs
+            const emailInputs = document.querySelectorAll('input[type="email"]');
+            emailInputs.forEach(input => {
+                input.setAttribute('inputmode', 'email');
+                input.setAttribute('autocomplete', 'email');
+            });
+
+            // Number inputs
+            const numberInputs = document.querySelectorAll('input[type="number"]');
+            numberInputs.forEach(input => {
+                input.setAttribute('inputmode', 'numeric');
+                input.setAttribute('pattern', '[0-9]*');
+            });
+
+            // Add touch feedback to all inputs
+            const allInputs = document.querySelectorAll('input, select, textarea');
+            allInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('input-focused');
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('input-focused');
+                });
+            });
+
+            // Improve date inputs for mobile
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                // Some mobile browsers handle date inputs better with specific formats
+                input.setAttribute('placeholder', 'MM/DD/YYYY');
+            });
         },
 
         initDarkMode: function() {

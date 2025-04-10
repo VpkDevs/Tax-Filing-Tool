@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#4f46e5">
     <title>2021 Recovery Rebate Credit Maximizer | Automated Tax Filing</title>
     <meta name="description" content="Maximize your 2021 Recovery Rebate Credit with our automated tax filing tool. Get your stimulus payment quickly and easily.">
     <meta name="keywords" content="tax filing, recovery rebate credit, stimulus payment, tax return, IRS">
@@ -17,6 +20,7 @@
     <link rel="stylesheet" href="./static/css/modules/document-analyzer.css">
     <link rel="stylesheet" href="./static/css/modules/micro-steps.css">
     <link rel="stylesheet" href="./static/css/time-estimates.css">
+    <link rel="stylesheet" href="./static/css/mobile-responsive.css">
     <style>
         :root {
             --primary: #ff00ff; /* Neon pink */
@@ -317,22 +321,33 @@
 
         .mobile-menu-btn {
             display: none;
-            background: var(--light);
+            background: linear-gradient(45deg, var(--primary-dark), var(--accent-dark));
             border: none;
-            color: var(--text-dark);
+            color: white;
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 50%;
-            box-shadow: var(--neu-shadow-light);
+            box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
             width: 50px;
             height: 50px;
             align-items: center;
             justify-content: center;
+            z-index: 1001;
+            transition: all 0.3s ease;
         }
 
         .mobile-menu-btn:hover {
-            box-shadow: var(--neu-shadow-inset-light);
+            box-shadow: 0 0 15px var(--primary), 0 0 30px var(--accent);
+            transform: scale(1.05);
+        }
+
+        .mobile-menu-btn.active {
+            background: linear-gradient(45deg, var(--accent-dark), var(--primary-dark));
+        }
+
+        .mobile-menu-btn.active i {
+            transform: rotate(90deg);
         }
 
         .hero {
@@ -2647,9 +2662,11 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+                padding: 0.5rem 0;
             }
 
             nav {
@@ -2658,23 +2675,69 @@
 
             nav ul {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 1rem;
+                padding: 2rem 0;
             }
 
             .mobile-menu-btn {
                 display: flex;
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
+                position: relative;
+                z-index: 1001;
             }
 
             .nav-menu {
                 display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
                 width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--primary-dark), var(--accent-dark));
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                animation: fadeIn 0.3s ease;
             }
 
             .nav-menu.active {
-                display: block;
+                display: flex;
+            }
+
+            .nav-menu ul {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .nav-menu a {
+                color: white;
+                font-size: 1.5rem;
+                font-weight: 600;
+                position: relative;
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-menu a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: white;
+                transition: width 0.3s ease;
+            }
+
+            .nav-menu a:hover::after {
+                width: 100%;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
             }
 
             .hero h1 {
@@ -4003,5 +4066,6 @@
             }
         });
     </script>
+    <script src="./static/js/mobile-touch.js"></script>
     </body>
 </html>
