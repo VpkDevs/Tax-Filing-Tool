@@ -1,0 +1,119 @@
+/* Micro-Steps Styles */
+
+.micro-steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.micro-steps::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--border);
+    z-index: 1;
+}
+
+.micro-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.micro-step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--light);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.micro-step-label {
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    text-align: center;
+    max-width: 80px;
+    transition: all 0.3s ease;
+}
+
+/* Active state */
+.micro-step.active .micro-step-number {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+
+.micro-step.active .micro-step-label {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Completed state */
+.micro-step.completed .micro-step-number {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+.micro-step.completed .micro-step-number::after {
+    content: '✓';
+    font-size: 0.8rem;
+}
+
+.micro-step.completed .micro-step-label {
+    color: var(--success);
+}
+
+/* Hover state */
+.micro-step:not(.active):hover .micro-step-number {
+    transform: scale(1.1);
+    border-color: var(--accent-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .micro-steps {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 0.5rem;
+    }
+    
+    .micro-step {
+        min-width: 80px;
+        margin-right: 1rem;
+    }
+    
+    .micro-steps::before {
+        left: 15px;
+        right: 15px;
+    }
+}
+
+/* Dark mode adjustments */
+.dark-mode .micro-step-number {
+    background-color: var(--bg-dark);
+    border-color: var(--border-dark);
+    color: var(--text-light);
+}
+
+.dark-mode .micro-step-label {
+    color: var(--text-light);
+}

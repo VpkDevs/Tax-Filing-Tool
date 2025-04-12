@@ -6,7 +6,7 @@ from scipy import stats
 import sympy
 from decimal import Decimal, ROUND_HALF_UP
 import logging
-from src.models import db, CalculationHistory
+from models import db, CalculationHistory
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')

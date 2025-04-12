@@ -1,0 +1,190 @@
+/* Beginner Intro Modal and Tips Styles */
+
+/* Beginner Intro Modal */
+.beginner-intro-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.beginner-intro-modal.fade-out {
+    opacity: 0;
+}
+
+.beginner-intro-content {
+    background-color: var(--light);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.5s ease;
+}
+
+.beginner-intro-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.beginner-intro-header i {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.beginner-intro-header h2 {
+    color: var(--text-dark);
+    font-size: 1.75rem;
+    margin: 0;
+}
+
+.beginner-intro-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.beginner-intro-features {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.intro-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: var(--bg-light);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.intro-feature:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.intro-feature i {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-top: 0.25rem;
+}
+
+.intro-feature h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.intro-feature p {
+    margin: 0;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.beginner-intro-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Beginner Tips */
+.beginner-tip {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 950;
+    max-width: 350px;
+    width: calc(100% - 40px);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.beginner-tip.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.beginner-tip-content {
+    background-color: var(--light);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid var(--accent);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.beginner-tip-content i {
+    color: var(--accent);
+    font-size: 1.25rem;
+    margin-top: 0.1rem;
+}
+
+.beginner-tip-content p {
+    flex: 1;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.beginner-tip-close {
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    opacity: 0.5;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.beginner-tip-close:hover {
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dark mode adjustments */
+.dark-mode .beginner-intro-content,
+.dark-mode .beginner-tip-content {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+}
+
+.dark-mode .intro-feature {
+    background-color: var(--bg-darker);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .beginner-intro-options {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .beginner-tip {
+        bottom: 70px; /* Adjust to avoid overlapping with other UI elements on mobile */
+    }
+}

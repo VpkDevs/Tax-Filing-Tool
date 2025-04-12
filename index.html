@@ -6,10 +6,35 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#4f46e5">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Tax Filing Tool">
+    <meta name="apple-mobile-web-app-title" content="Tax Filing Tool">
+    <meta name="msapplication-TileColor" content="#4f46e5">
+    <meta name="msapplication-navbutton-color" content="#4f46e5">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="format-detection" content="email=no">
     <title>2021 Recovery Rebate Credit Maximizer | Automated Tax Filing</title>
     <meta name="description" content="Maximize your 2021 Recovery Rebate Credit with our automated tax filing tool. Get your stimulus payment quickly and easily.">
     <meta name="keywords" content="tax filing, recovery rebate credit, stimulus payment, tax return, IRS">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%238b5cf6%22 /><text x=%2250%22 y=%2265%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22>VK</text></svg>">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2250%22 fill=%22%238b5cf6%22 /><text x=%2250%22 y=%2265%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22>VK</text></svg>">
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/static/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./static/css/modules/walkthrough.css">
     <link rel="stylesheet" href="./static/css/modules/beginner-walkthrough.css">
@@ -25,21 +50,30 @@
     <style>
         :root {
             --primary: #ff00ff; /* Neon pink */
+            --primary-rgb: 255, 0, 255;
             --primary-dark: #cc00cc;
             --primary-light: #ff66ff;
             --secondary: #00ffff; /* Cyan */
+            --secondary-rgb: 0, 255, 255;
             --dark: #120458; /* Deep purple */
+            --dark-rgb: 18, 4, 88;
             --light: #1a0133; /* Dark purple background */
+            --light-rgb: 26, 1, 51;
             --text-dark: #ffffff; /* White text */
             --text-light: #f1f5f9;
             --success: #00ffaa; /* Neon green */
+            --success-rgb: 0, 255, 170;
             --warning: #ffff00; /* Neon yellow */
+            --warning-rgb: 255, 255, 0;
             --danger: #ff0066; /* Hot pink */
+            --danger-rgb: 255, 0, 102;
             --border: #ff00ff; /* Neon pink */
             --accent: #00ffff; /* Cyan */
+            --accent-rgb: 0, 255, 255;
             --accent-light: #66ffff;
             --accent-dark: #00cccc;
             --bg-light: #1a0133; /* Dark purple background */
+            --bg-light-rgb: 26, 1, 51;
             --neu-shadow-light: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; /* Neon glow */
             --neu-shadow-inset-light: inset 0 0 10px #00ffff, inset 0 0 20px #00ffff;
             --neu-shadow-dark: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
@@ -48,27 +82,37 @@
             --grid-color: rgba(255, 0, 255, 0.5); /* For grid background */
             --grid-size: 30px; /* Grid cell size */
             --grid-line: 1px; /* Grid line thickness */
+            --background: var(--bg-light);
+            --text: var(--text-dark);
         }
 
         .dark-mode {
             --primary: #00ffff; /* Cyan */
+            --primary-rgb: 0, 255, 255;
             --primary-dark: #00cccc;
             --primary-light: #66ffff;
             --secondary: #ff00ff; /* Neon pink */
+            --secondary-rgb: 255, 0, 255;
             --dark: #ffffff; /* White */
+            --dark-rgb: 255, 255, 255;
             --light: #000033; /* Darker blue */
+            --light-rgb: 0, 0, 51;
             --text-dark: #ffffff; /* White text */
             --text-light: #00ffff; /* Cyan text */
             --border: #00ffff; /* Cyan */
             --accent: #ff00ff; /* Neon pink */
+            --accent-rgb: 255, 0, 255;
             --accent-light: #ff66ff;
             --accent-dark: #cc00cc;
             --bg-light: #000033; /* Darker blue background */
+            --bg-light-rgb: 0, 0, 51;
             --neu-shadow-light: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; /* Cyan glow */
             --neu-shadow-inset-light: inset 0 0 10px #ff00ff, inset 0 0 20px #ff00ff;
             --neu-shadow-dark: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
             --neu-shadow-inset-dark: inset 0 0 10px #ff00ff, inset 0 0 20px #ff00ff;
             --grid-color: rgba(0, 255, 255, 0.5); /* For grid background */
+            --background: var(--bg-light);
+            --text: var(--text-dark);
         }
 
         * {
@@ -818,7 +862,7 @@
         }
 
         .result-box.show {
-            display: block;
+            display: block !important;
             transform: translateY(0);
             opacity: 1;
         }
@@ -3846,7 +3890,7 @@
                         </div>
                         <div class="summary-item">
                             <div class="summary-label">Confirmation Number:</div>
-                            <div class="summary-value">RRC-2021-38295710</div>
+                            <div class="summary-value" id="confirmationNumber">Generating...</div>
                         </div>
                         <div class="summary-item">
                             <div class="summary-label">Filing Date:</div>

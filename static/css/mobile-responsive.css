@@ -1,0 +1,667 @@
+/* Mobile Responsive Enhancements */
+
+/* Prevent body scrolling when assistant is open */
+body.assistant-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Base mobile adjustments */
+@media (max-width: 768px) {
+    /* General layout adjustments */
+    .container {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    /* Typography adjustments */
+    h1 {
+        font-size: 2rem !important;
+    }
+
+    h2 {
+        font-size: 1.75rem !important;
+    }
+
+    h3 {
+        font-size: 1.5rem !important;
+    }
+
+    /* Form elements */
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents iOS zoom on focus */
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding: 0.75rem 1rem;
+    }
+
+    /* Filing tool specific */
+    .filing-tool {
+        padding: 1rem;
+    }
+
+    .filing-step {
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .filing-progress {
+        padding: 0.75rem;
+        margin-bottom: 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .filing-progress {
+        background-color: rgba(15, 23, 42, 0.9);
+    }
+
+    .filing-progress-steps {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+
+    .filing-progress-steps::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .filing-progress-step {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+    }
+
+    .filing-progress-bar {
+        height: 8px;
+        border-radius: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        box-shadow: 0 0 10px var(--primary-light);
+    }
+
+    /* Improve form elements in filing steps */
+    .filing-step .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .filing-step label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .filing-step input,
+    .filing-step select,
+    .filing-step textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+        background-color: var(--bg-light);
+        font-size: 16px !important; /* Prevents iOS zoom */
+        transition: all 0.3s ease;
+    }
+
+    .filing-step .input-focused input,
+    .filing-step .input-focused select,
+    .filing-step .input-focused textarea {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px var(--primary-light);
+    }
+
+    /* Improve navigation buttons */
+    .filing-step .step-navigation {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .filing-step .next-step {
+        order: 1;
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        color: white;
+        font-weight: 600;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .filing-step .prev-step {
+        order: 2;
+        background: transparent;
+        color: var(--text-dark);
+        border: 1px solid var(--border);
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+    }
+
+    /* Walkthrough adjustments */
+    .walkthrough-container {
+        padding: 1rem;
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+
+    .walkthrough-content {
+        padding: 1rem;
+    }
+
+    .walkthrough-header {
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .dark-mode .walkthrough-header {
+        background-color: rgba(15, 23, 42, 0.9);
+    }
+
+    .walkthrough-navigation {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+        position: sticky;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border);
+        z-index: 10;
+    }
+
+    .dark-mode .walkthrough-navigation {
+        background-color: rgba(15, 23, 42, 0.9);
+    }
+
+    .walkthrough-navigation button {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+    }
+
+    .walkthrough-navigation #walkthrough-next {
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .walkthrough-navigation #walkthrough-prev {
+        background: transparent;
+        color: var(--text-dark);
+        border: 1px solid var(--border);
+    }
+
+    /* Walkthrough progress */
+    .walkthrough-progress {
+        padding: 0.5rem 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .walkthrough-progress::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .walkthrough-progress-step {
+        flex: 0 0 auto;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.875rem;
+        font-weight: 600;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        border: 2px solid var(--border);
+        transition: all 0.3s ease;
+    }
+
+    .walkthrough-progress-step.active {
+        background-color: var(--primary);
+        color: white;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px var(--primary-light);
+    }
+
+    .walkthrough-progress-step.completed {
+        background-color: var(--success);
+        color: white;
+        border-color: var(--success);
+    }
+
+    /* Virtual assistant */
+    .virtual-assistant-button {
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+    }
+
+    #virtual-assistant-container {
+        width: 90%;
+        height: 70vh;
+        bottom: 5rem;
+        right: 5%;
+        left: 5%;
+    }
+
+    /* Touch-friendly adjustments */
+    .touch-target {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Fix for iOS 100vh issue */
+    .full-height {
+        height: 100%;
+        height: -webkit-fill-available;
+    }
+
+    /* Improved scrolling */
+    .smooth-scroll {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Fix for position:fixed elements */
+    .fixed-element {
+        position: fixed;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    /* Further reduce sizes */
+    .container {
+        padding: 0.75rem;
+    }
+
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.25rem !important;
+    }
+
+    /* Stack buttons and controls */
+    .button-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Adjust form layouts */
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-col {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Adjust card layouts */
+    .card {
+        padding: 1rem;
+    }
+
+    /* Adjust modal sizes */
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    /* Adjust filing steps */
+    .step-indicator {
+        width: 30px;
+        height: 30px;
+        font-size: 0.875rem;
+    }
+
+    /* Adjust calculator */
+    .calculator-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Adjust virtual assistant */
+    #virtual-assistant-container {
+        height: 80vh;
+    }
+}
+
+/* Landscape mode optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+    /* Adjust heights for landscape */
+    .full-height {
+        height: auto;
+        min-height: 100%;
+    }
+
+    /* Adjust filing tool */
+    .filing-step {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    /* Adjust walkthrough */
+    .walkthrough-container {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    /* Adjust virtual assistant */
+    #virtual-assistant-container {
+        height: 60vh;
+        bottom: 1rem;
+    }
+
+    /* Optimize forms for landscape */
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .form-col {
+        flex: 1 1 calc(50% - 0.5rem);
+        min-width: 0;
+    }
+
+    /* Optimize calculator for landscape */
+    .calculator-buttons {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .btn {
+        width: auto;
+    }
+
+    .button-group {
+        flex-direction: row;
+    }
+
+    .filing-progress-steps {
+        display: flex;
+    }
+}
+
+/* High-DPI screens (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Optimize images and borders */
+    .retina-optimize {
+        border-width: 0.5px;
+    }
+
+    /* Use SVG where possible for sharper icons */
+    .icon {
+        background-size: contain;
+    }
+}
+
+/* Dark mode adjustments for mobile */
+@media (max-width: 768px) {
+    .dark-mode .filing-step,
+    .dark-mode .walkthrough-container,
+    .dark-mode .card,
+    .dark-mode .modal-content {
+        background-color: var(--light);
+    }
+
+    .dark-mode .filing-progress {
+        background-color: rgba(15, 23, 42, 0.8);
+    }
+}
+
+/* Touch feedback */
+@media (max-width: 768px) {
+    .btn:active,
+    .card:active,
+    .clickable:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    /* Increase contrast */
+    .high-contrast {
+        color: #000 !important;
+        background-color: #fff !important;
+    }
+
+    .dark-mode .high-contrast {
+        color: #fff !important;
+        background-color: #000 !important;
+    }
+
+    /* Increase touch targets */
+    button,
+    a,
+    input[type="checkbox"],
+    input[type="radio"],
+    .clickable {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Enhanced mobile features */
+
+/* Pull-to-refresh indicator */
+.pull-to-refresh-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pull-to-refresh-indicator i {
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+/* Swipe transition overlays */
+.swipe-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    animation: swipeTransition 0.5s ease-out;
+}
+
+.swipe-left {
+    background: linear-gradient(to left, rgba(255, 0, 255, 0.1), transparent);
+}
+
+.swipe-right {
+    background: linear-gradient(to right, rgba(255, 0, 255, 0.1), transparent);
+}
+
+@keyframes swipeTransition {
+    0% { opacity: 0.3; }
+    100% { opacity: 0; }
+}
+
+/* Offline mode indicators */
+.offline-indicator {
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+.offline-mode .form-control {
+    background-color: rgba(var(--danger-rgb), 0.05);
+}
+
+.offline-mode button[type="submit"],
+.offline-mode input[type="submit"] {
+    position: relative;
+    overflow: hidden;
+}
+
+.offline-mode button[type="submit"]::after,
+.offline-mode input[type="submit"]::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1) 10px,
+        rgba(0, 0, 0, 0.2) 10px,
+        rgba(0, 0, 0, 0.2) 20px
+    );
+    pointer-events: none;
+}
+
+/* Form save indicator */
+.form-save-indicator {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-save-indicator::before {
+    content: '✓';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: var(--success);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    font-size: 10px;
+}
+
+/* Pinch zoom */
+.document-preview, .zoomable-image {
+    touch-action: none;
+    transform-origin: center;
+    will-change: transform;
+}
+
+.smooth-zoom {
+    transition: transform 0.2s ease-out;
+}
+
+/* Enhanced focus states for accessibility */
+.touch-device input:focus,
+.touch-device select:focus,
+.touch-device textarea:focus,
+.touch-device button:focus,
+.touch-device a:focus,
+.touch-device [tabindex]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary) !important;
+}
+
+.focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary) !important;
+}
+
+/* Haptic feedback visual cue */
+.touch-active {
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
+}
+
+/* Improved scrolling */
+.smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.smooth-scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.smooth-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--primary-rgb), 0.5);
+    border-radius: 3px;
+}
+
+.smooth-scroll::-webkit-scrollbar-track {
+    background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+/* Fix for iOS 100vh issue */
+.full-height {
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Fix for position:fixed elements */
+.fixed-element {
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}

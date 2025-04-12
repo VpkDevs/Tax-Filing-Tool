@@ -1,0 +1,157 @@
+/* Rebate Calculator Styles */
+
+.calculator-section {
+    margin-bottom: 3rem;
+}
+
+.calculator-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calculator-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.calculator-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.submit-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+#calculator-result {
+    display: none;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.calculator-result {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.calculator-result.eligible {
+    border-top: 4px solid var(--success-color);
+}
+
+.calculator-result.not-eligible {
+    border-top: 4px solid var(--warning-color);
+}
+
+.result-header {
+    background-color: var(--card-header-bg);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.result-body {
+    padding: 1.5rem;
+}
+
+.result-amount-box {
+    background-color: var(--card-bg-alt);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.result-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.result-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.result-message {
+    background-color: var(--card-bg-alt);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: var(--card-header-bg);
+}
+
+.calculation-explanation {
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.calculation-step {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--card-bg-alt);
+    border-radius: 8px;
+}
+
+.calculation-step h4 {
+    margin-bottom: 0.75rem;
+    color: var(--accent-color);
+}
+
+.calculation-step ul {
+    margin-left: 1.5rem;
+}
+
+.calculation-step li {
+    margin-bottom: 0.5rem;
+}
+
+/* Dark mode adjustments */
+.dark-mode .calculator-container,
+.dark-mode .calculator-result {
+    background-color: var(--card-bg);
+}
+
+.dark-mode .result-header,
+.dark-mode .result-actions {
+    background-color: var(--card-header-bg);
+}
+
+.dark-mode .result-amount-box,
+.dark-mode .result-message,
+.dark-mode .calculation-step {
+    background-color: var(--card-bg-alt);
+}
+
+.dark-mode .result-amount {
+    color: var(--accent-color-dark);
+}

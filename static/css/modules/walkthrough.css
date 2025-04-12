@@ -1,0 +1,562 @@
+/* Walkthrough Module Styles */
+
+.walkthrough-container {
+    background-color: var(--light);
+    border-radius: 1rem;
+    box-shadow: var(--neu-shadow-light);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.walkthrough-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.walkthrough-progress::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--border);
+    z-index: 1;
+}
+
+.walkthrough-progress-step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 100px;
+    max-width: 150px;
+    margin: 0 5px 15px;
+}
+
+.progress-step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    box-shadow: var(--neu-shadow-light);
+    transition: all 0.3s ease;
+}
+
+.progress-step-title {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    max-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.walkthrough-progress-step.completed .progress-step-number {
+    background-color: var(--success);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.walkthrough-progress-step.active .progress-step-number {
+    background-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+}
+
+.walkthrough-progress-step.completed .progress-step-title,
+.walkthrough-progress-step.active .progress-step-title {
+    font-weight: 500;
+}
+
+.walkthrough-progress-step.completed .progress-step-title {
+    color: var(--success);
+}
+
+.walkthrough-progress-step.active .progress-step-title {
+    color: var(--accent);
+}
+
+.walkthrough-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.walkthrough-header h2 {
+    margin: 0;
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.walkthrough-step-indicator {
+    background-color: var(--accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.walkthrough-main-content {
+    margin-bottom: 2rem;
+}
+
+.walkthrough-content h3 {
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.walkthrough-list {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.walkthrough-list li {
+    margin-bottom: 0.75rem;
+}
+
+.walkthrough-note {
+    background-color: var(--bg-light);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.walkthrough-note i {
+    color: var(--accent);
+    font-size: 1.25rem;
+    margin-top: 0.25rem;
+}
+
+.walkthrough-note p {
+    margin: 0;
+    flex: 1;
+}
+
+.document-checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.document-category {
+    background-color: var(--bg-light);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.document-category h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.document-category ul {
+    padding-left: 1.25rem;
+}
+
+.document-category li {
+    margin-bottom: 0.5rem;
+}
+
+.status-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.status-option {
+    background-color: var(--bg-light);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.status-option h4 {
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.rebate-explanation h4 {
+    color: var(--accent);
+    margin: 1.5rem 0 0.75rem;
+}
+
+.rebate-explanation ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.forms-explanation {
+    margin: 1.5rem 0;
+}
+
+.form-item {
+    background-color: var(--bg-light);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.form-item h4 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.form-preview-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.form-preview-link:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+}
+
+.filing-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.filing-method {
+    background-color: var(--bg-light);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.filing-method h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.filing-method ol, .filing-method ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.filing-method li {
+    margin-bottom: 0.5rem;
+}
+
+.mailing-addresses {
+    background-color: var(--bg-light);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.mailing-addresses h4 {
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.timeline {
+    margin: 2rem 0;
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-marker {
+    flex: 0 0 40px;
+    height: 40px;
+    background-color: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content {
+    flex: 1;
+    padding: 0 0 0 1.5rem;
+}
+
+.timeline-content h4 {
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 2px;
+    height: calc(100% - 20px);
+    background-color: var(--accent);
+    z-index: 1;
+}
+
+.walkthrough-resources {
+    background-color: var(--bg-light);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.walkthrough-resources h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.resources-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.resource-item {
+    background-color: var(--light);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    box-shadow: var(--neu-shadow-light);
+    transition: all 0.3s ease;
+}
+
+.resource-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.resource-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--neu-shadow-light);
+}
+
+.download-btn:hover {
+    color: var(--accent-dark);
+    box-shadow: var(--neu-shadow-inset-light);
+    transform: translateY(-2px);
+}
+
+.walkthrough-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.form-preview-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-preview-content {
+    background-color: var(--light);
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: scaleIn 0.3s ease;
+}
+
+.form-preview-header {
+    padding: 1.25rem;
+    background-color: var(--accent);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-preview-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.form-preview-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.form-preview-close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-preview-body {
+    flex: 1;
+    overflow: auto;
+    padding: 0;
+}
+
+.form-preview-body iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.form-preview-footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .walkthrough-progress-step {
+        min-width: 80px;
+    }
+    
+    .progress-step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+    
+    .progress-step-title {
+        font-size: 0.75rem;
+    }
+    
+    .walkthrough-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .document-checklist,
+    .status-options,
+    .filing-methods,
+    .resources-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .walkthrough-navigation {
+        flex-direction: column-reverse;
+        gap: 1rem;
+    }
+    
+    .walkthrough-navigation button {
+        width: 100%;
+    }
+}
+
+/* Dark mode adjustments */
+.dark-mode .walkthrough-container {
+    background-color: var(--light);
+}
+
+.dark-mode .walkthrough-progress::before {
+    background-color: var(--border);
+}
+
+.dark-mode .progress-step-number {
+    background-color: var(--bg-light);
+}
+
+.dark-mode .document-category,
+.dark-mode .status-option,
+.dark-mode .form-item,
+.dark-mode .filing-method,
+.dark-mode .mailing-addresses,
+.dark-mode .walkthrough-note,
+.dark-mode .walkthrough-resources,
+.dark-mode .resource-item {
+    background-color: var(--bg-light);
+}
+
+.dark-mode .form-preview-content {
+    background-color: var(--light);
+}
