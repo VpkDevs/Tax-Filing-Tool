@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./static/css/modules/micro-steps.css">
     <link rel="stylesheet" href="./static/css/time-estimates.css">
     <link rel="stylesheet" href="./static/css/mobile-responsive.css">
+    <link rel="stylesheet" href="./static/css/claim-process-tracker.css">
     <style>
         :root {
             --primary: #ff00ff; /* Neon pink */
@@ -3228,17 +3229,17 @@
                             <li>Automated notifications at each stage of processing</li>
                             <li>Direct deposit setup for fastest payment receipt</li>
                         </ul>
-                        <div class="status-tracker">
+                        <div class="status-tracker" id="claimProcessTracker">
                             <div class="status-steps">
-                                <div class="status-step completed">
-                                    <div class="status-dot"><i class="fas fa-check"></i></div>
-                                    <div class="status-label">Prepared</div>
-                                </div>
-                                <div class="status-step completed">
-                                    <div class="status-dot"><i class="fas fa-check"></i></div>
-                                    <div class="status-label">Filed</div>
-                                </div>
                                 <div class="status-step active">
+                                    <div class="status-dot">1</div>
+                                    <div class="status-label">Preparation</div>
+                                </div>
+                                <div class="status-step">
+                                    <div class="status-dot">2</div>
+                                    <div class="status-label">Filing</div>
+                                </div>
+                                <div class="status-step">
                                     <div class="status-dot">3</div>
                                     <div class="status-label">Processing</div>
                                 </div>
@@ -4007,8 +4008,38 @@
         </div>
     </div>
 
-    <script type="module" src="./static/js/main-modules.js"></script>
-    <script type="module" src="./static/js/tax-filing-app.js"></script>
+    <!-- Simple Claim Process Tracker with Checkboxes -->
+    <div id="claimProcessTracker" class="claim-process-tracker">
+        <h3>Filing Progress</h3>
+        <div class="process-steps">
+            <div class="process-step">
+                <input type="checkbox" id="step1Checkbox" class="process-checkbox">
+                <label for="step1Checkbox">Preparation</label>
+            </div>
+            <div class="process-step">
+                <input type="checkbox" id="step2Checkbox" class="process-checkbox">
+                <label for="step2Checkbox">Filing</label>
+            </div>
+            <div class="process-step">
+                <input type="checkbox" id="step3Checkbox" class="process-checkbox">
+                <label for="step3Checkbox">Processing</label>
+            </div>
+            <div class="process-step">
+                <input type="checkbox" id="step4Checkbox" class="process-checkbox">
+                <label for="step4Checkbox">Approved</label>
+            </div>
+            <div class="process-step">
+                <input type="checkbox" id="step5Checkbox" class="process-checkbox">
+                <label for="step5Checkbox">Payment</label>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+        </div>
+    </div>
+
+    <!-- Main script that loads all modules in the correct order -->
+    <script src="./static/js/main.js"></script>
 
     <!-- Non-module script for dark mode toggle and audio player -->
     <script>

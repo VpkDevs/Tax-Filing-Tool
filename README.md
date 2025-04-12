@@ -1,4 +1,4 @@
-# 2021 Recovery Rebate Credit Maximizer
+# 2021 Recovery Rebate Credit Maximizer by VK
 
 A comprehensive tax filing tool designed to help users claim the Recovery Rebate Credit on their 2021 tax returns. This tool provides a step-by-step walkthrough of the filing process, making it accessible even for users who have never filed taxes before or are unfamiliar with prior year filings.
 

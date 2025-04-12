@@ -1017,7 +1017,7 @@ const TaxWalkthrough = (function() {
                 introModal.classList.add('fade-out');
                 setTimeout(() => {
                     introModal.remove();
-                    this.showBeginnerTip('Welcome to beginner mode! We'll explain everything in extra detail.');
+                    this.showBeginnerTip('Welcome to beginner mode! We\'ll explain everything in extra detail.');
                 }, 300);
             });
 

@@ -1,0 +1,120 @@
+<!-- Simple Claim Process Tracker with Checkboxes -->
+<div id="claimProcessTracker" class="claim-process-tracker">
+    <h3>Filing Progress</h3>
+    <div class="process-steps">
+        <div class="process-step">
+            <input type="checkbox" id="step1Checkbox" class="process-checkbox">
+            <label for="step1Checkbox">Preparation</label>
+        </div>
+        <div class="process-step">
+            <input type="checkbox" id="step2Checkbox" class="process-checkbox">
+            <label for="step2Checkbox">Filing</label>
+        </div>
+        <div class="process-step">
+            <input type="checkbox" id="step3Checkbox" class="process-checkbox">
+            <label for="step3Checkbox">Processing</label>
+        </div>
+        <div class="process-step">
+            <input type="checkbox" id="step4Checkbox" class="process-checkbox">
+            <label for="step4Checkbox">Approved</label>
+        </div>
+        <div class="process-step">
+            <input type="checkbox" id="step5Checkbox" class="process-checkbox">
+            <label for="step5Checkbox">Payment</label>
+        </div>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-bar-fill"></div>
+    </div>
+</div>
+
+<style>
+    .claim-process-tracker {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: var(--light);
+        border-radius: 10px;
+        box-shadow: var(--neu-shadow-light);
+    }
+
+    .claim-process-tracker h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: var(--accent);
+    }
+
+    .process-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+
+    .process-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        min-width: 80px;
+        margin: 0 5px;
+    }
+
+    .process-checkbox {
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: var(--bg-light);
+        box-shadow: var(--neu-shadow-inset-light);
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 8px;
+    }
+
+    .process-checkbox:checked {
+        background-color: var(--accent);
+        box-shadow: 0 0 10px var(--accent);
+    }
+
+    .process-checkbox:checked::after {
+        content: '\2713';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 14px;
+    }
+
+    .process-step label {
+        font-size: 14px;
+        text-align: center;
+        color: var(--text-dark);
+    }
+
+    .progress-bar {
+        height: 8px;
+        background-color: var(--bg-light);
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: var(--neu-shadow-inset-light);
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        width: 0%;
+        background-color: var(--accent);
+        transition: width 0.3s ease;
+        box-shadow: 0 0 10px var(--accent);
+    }
+
+    @media (max-width: 768px) {
+        .process-steps {
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            margin-bottom: 10px;
+        }
+    }
+</style>

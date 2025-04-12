@@ -1,17 +1,9 @@
 /**
- * Tax Filing Application
- * Main JavaScript file that integrates all modules
+ * Tax Filing Tool Application
+ *
+ * Main application file that initializes all modules and handles the tax filing process
  */
 
-// Import modules
-import TaxWalkthrough from './modules/walkthrough.js';
-import TaxForms from './modules/forms.js';
-import RebateCalculator from './modules/rebate-calculator.js';
-import ProgressTracker from './modules/progress-tracker.js';
-import DocumentAnalyzer from './modules/document-analyzer.js';
-import VirtualAssistant from './modules/virtual-assistant.js';
-
-// Main application
 const TaxFilingApp = (function() {
     // Private variables
     let currentFilingStep = 1;
@@ -268,7 +260,66 @@ const TaxFilingApp = (function() {
             try {
                 console.log('Initializing Tax Filing Application...');
 
-                // Initialize progress tracker
+                // Initialize data storage
+                if (window.DataStorage) {
+                    console.log('Initializing Data Storage...');
+                    window.DataStorage.init({
+                        storageType: 'localStorage',
+                        encryptionEnabled: false
+                    });
+                } else {
+                    console.warn('Data Storage module not found.');
+                }
+
+                // Initialize form validation
+                if (window.FormValidator) {
+                    console.log('Initializing Form Validator...');
+                    window.FormValidator.init();
+                } else {
+                    console.warn('Form Validator module not found.');
+                }
+
+                // Initialize tax logic
+                if (window.TaxLogic) {
+                    console.log('Initializing Tax Logic...');
+                    window.TaxLogic.init();
+                } else {
+                    console.warn('Tax Logic module not found.');
+                }
+
+                // Initialize auto-fill
+                if (window.AutoFill) {
+                    console.log('Initializing Auto-Fill...');
+                    window.AutoFill.init();
+                } else {
+                    console.warn('Auto-Fill module not found.');
+                }
+
+                // Initialize claim process tracker
+                if (window.ClaimProcessTracker) {
+                    console.log('Initializing Claim Process Tracker...');
+                    window.ClaimProcessTracker.init();
+                } else {
+                    console.warn('Claim Process Tracker module not found.');
+                }
+
+                // Initialize filing steps
+                if (window.FilingSteps) {
+                    console.log('Initializing Filing Steps...');
+                    window.FilingSteps.init();
+                } else {
+                    console.warn('FilingSteps module not found.');
+                }
+
+                // Initialize payment methods
+                if (window.PaymentMethods) {
+                    console.log('Initializing Payment Methods...');
+                    window.PaymentMethods.init();
+                } else {
+                    console.warn('PaymentMethods module not found.');
+                }
+
+                // Initialize progress tracker (legacy)
                 if (typeof ProgressTracker !== 'undefined') {
                     console.log('Initializing Progress Tracker...');
                     ProgressTracker.init(5); // 5 total steps in the filing process
@@ -276,7 +327,13 @@ const TaxFilingApp = (function() {
                     console.warn('Progress Tracker module not found.');
                 }
 
-                // Initialize walkthrough module
+                // Initialize auto-fill options (legacy)
+                this.initAutoFillOptions();
+
+                // Initialize claim process tracker (legacy)
+                this.initClaimProcessTracker();
+
+                // Initialize walkthrough module (legacy)
                 if (typeof TaxWalkthrough !== 'undefined') {
                     const walkthroughContainer = document.getElementById('walkthrough-container');
                     if (walkthroughContainer) {
@@ -287,99 +344,6 @@ const TaxFilingApp = (function() {
                     }
                 } else {
                     console.warn('Tax Walkthrough module not found.');
-                }
-
-                // Initialize forms library
-                if (typeof TaxForms !== 'undefined') {
-                    const formsContainer = document.getElementById('forms-library-container');
-                    if (formsContainer) {
-                        console.log('Initializing Tax Forms Library...');
-                        TaxForms.generateFormLibrary('forms-library-container');
-                    } else {
-                        console.warn('Forms library container not found.');
-                    }
-                } else {
-                    console.warn('Tax Forms module not found.');
-                }
-
-                // Initialize rebate calculator
-                if (typeof RebateCalculator !== 'undefined') {
-                    const calculatorForm = document.getElementById('calculator-form');
-                    const calculatorResult = document.getElementById('calculator-result');
-                    if (calculatorForm && calculatorResult) {
-                        console.log('Initializing Rebate Calculator...');
-                        RebateCalculator.initCalculator('calculator-form', 'calculator-result');
-                    } else {
-                        console.warn('Calculator form or result container not found.');
-                    }
-                } else {
-                    console.warn('Rebate Calculator module not found.');
-                }
-
-                // Initialize document analyzer for step 2
-                if (typeof DocumentAnalyzer !== 'undefined') {
-                    const uploadArea = document.getElementById('document-upload-area');
-                    const previewArea = document.getElementById('document-preview-area');
-                    if (uploadArea && previewArea) {
-                        console.log('Initializing Document Analyzer...');
-                        DocumentAnalyzer.initDocumentUploader('document-upload-area', 'document-preview-area', (result) => {
-                            console.log('Document analyzed:', result);
-                            // Store document data for use in the filing process
-                            if (typeof ProgressTracker !== 'undefined') {
-                                ProgressTracker.saveData('documentData', result);
-                            }
-
-                            // Show success message
-                            try {
-                                const successMessage = document.createElement('div');
-                                successMessage.className = 'alert alert-success';
-                                successMessage.innerHTML = `
-                                    <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
-                                    <div class="alert-content">
-                                        <h4 class="alert-title">Document Added Successfully</h4>
-                                        <p>We've extracted the information from your ${result.documentName || 'document'} and added it to your return.</p>
-                                    </div>
-                                `;
-                                document.getElementById('document-preview-area').appendChild(successMessage);
-                            } catch (error) {
-                                console.error('Error showing document success message:', error);
-                            }
-                        });
-                    } else {
-                        console.warn('Document upload or preview area not found.');
-                    }
-                } else {
-                    console.warn('Document Analyzer module not found.');
-                }
-
-                // Initialize virtual assistant
-                if (typeof VirtualAssistant !== 'undefined') {
-                    const assistantContainer = document.getElementById('virtual-assistant-container');
-                    if (assistantContainer) {
-                        console.log('Initializing Virtual Assistant...');
-                        VirtualAssistant.init('virtual-assistant-container');
-                    } else {
-                        console.warn('Virtual assistant container not found.');
-                    }
-                } else {
-                    console.warn('Virtual Assistant module not found.');
-                }
-
-                // Add virtual assistant toggle button
-                if (typeof VirtualAssistant !== 'undefined') {
-                    try {
-                        const assistantButton = document.createElement('button');
-                        assistantButton.className = 'virtual-assistant-button';
-                        assistantButton.innerHTML = '<i class="fas fa-headset"></i>';
-                        assistantButton.setAttribute('aria-label', 'Get help from virtual assistant');
-                        document.body.appendChild(assistantButton);
-
-                        assistantButton.addEventListener('click', () => {
-                            VirtualAssistant.toggle('virtual-assistant-container');
-                        });
-                    } catch (error) {
-                        console.error('Error creating virtual assistant button:', error);
-                    }
                 }
 
                 // Initialize filing steps navigation
@@ -806,28 +770,88 @@ const TaxFilingApp = (function() {
         initDarkMode: function() {
             const modeToggle = document.querySelector('.mode-toggle');
             const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            const vaporwaveToggle = document.querySelector('.vaporwave-toggle');
 
             // Check for saved theme preference or use OS preference
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
-                document.body.classList.add('dark-mode');
-                modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                this.setTheme('dark');
+                if (modeToggle) modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else if (savedTheme === 'vaporwave') {
+                this.setTheme('vaporwave');
+                if (modeToggle) modeToggle.innerHTML = '<i class="fas fa-palette"></i>';
             } else {
-                modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                this.setTheme('light');
+                if (modeToggle) modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
             }
 
             // Toggle dark mode
-            modeToggle.addEventListener('click', () => {
-                if (document.body.classList.contains('dark-mode')) {
-                    document.body.classList.remove('dark-mode');
-                    localStorage.setItem('theme', 'light');
-                    modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                } else {
-                    document.body.classList.add('dark-mode');
-                    localStorage.setItem('theme', 'dark');
-                    modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            if (modeToggle) {
+                modeToggle.addEventListener('click', () => {
+                    if (document.body.classList.contains('theme-dark')) {
+                        this.setTheme('light');
+                        modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    } else {
+                        this.setTheme('dark');
+                        modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    }
+                });
+            }
+
+            // Toggle vaporwave mode
+            if (vaporwaveToggle) {
+                vaporwaveToggle.addEventListener('click', () => {
+                    if (document.body.classList.contains('theme-vaporwave')) {
+                        this.setTheme('light');
+                        vaporwaveToggle.innerHTML = '<i class="fas fa-palette"></i>';
+                    } else {
+                        this.setTheme('vaporwave');
+                        vaporwaveToggle.innerHTML = '<i class="fas fa-palette"></i>';
+                    }
+                });
+            }
+        },
+
+        setTheme: function(theme) {
+            // Remove current theme classes
+            document.body.classList.remove('theme-light', 'theme-dark', 'theme-vaporwave', 'dark-mode');
+
+            // Add new theme class
+            document.body.classList.add(`theme-${theme}`);
+
+            // For backward compatibility
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            // Save theme to localStorage
+            localStorage.setItem('theme', theme);
+
+            // Update active button
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            themeButtons.forEach(button => {
+                button.classList.remove('active');
+
+                if (button.dataset.theme === theme) {
+                    button.classList.add('active');
                 }
             });
+
+            // Update meta theme-color for mobile browsers
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                switch (theme) {
+                    case 'light':
+                        metaThemeColor.setAttribute('content', '#ffffff');
+                        break;
+                    case 'dark':
+                        metaThemeColor.setAttribute('content', '#1a1a1a');
+                        break;
+                    case 'vaporwave':
+                        metaThemeColor.setAttribute('content', '#ff00ff');
+                        break;
+                }
+            }
         },
 
         initMobileMenu: function() {
@@ -850,7 +874,142 @@ const TaxFilingApp = (function() {
                     }
                 });
             }
+
+            // Initialize navigation active state
+            this.initNavigation();
         },
+
+        initClaimProcessTracker: function() {
+            // Get the claim process tracker element
+            const claimProcessTracker = document.getElementById('claimProcessTracker');
+
+            if (!claimProcessTracker) {
+                console.warn('Claim process tracker not found.');
+                return;
+            }
+
+            console.log('Initializing claim process tracker...');
+
+            // Reset the tracker to the first step
+            const statusSteps = claimProcessTracker.querySelectorAll('.status-step');
+            statusSteps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index === 0) {
+                    step.classList.add('active');
+                }
+            });
+
+            // Add event listeners to update the tracker when filing steps change
+            document.addEventListener('progress-updated', (event) => {
+                const { currentStep, totalSteps } = event.detail;
+                this.updateClaimProcessTracker(currentStep, totalSteps);
+            });
+        },
+
+        updateClaimProcessTracker: function(currentStep, totalSteps) {
+            const claimProcessTracker = document.getElementById('claimProcessTracker');
+            if (!claimProcessTracker) return;
+
+            const statusSteps = claimProcessTracker.querySelectorAll('.status-step');
+            const claimStep = Math.ceil((currentStep / totalSteps) * statusSteps.length);
+
+            statusSteps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+
+                if (index + 1 < claimStep) {
+                    step.classList.add('completed');
+                    const dot = step.querySelector('.status-dot');
+                    if (dot) {
+                        dot.innerHTML = '<i class="fas fa-check"></i>';
+                    }
+                } else if (index + 1 === claimStep) {
+                    step.classList.add('active');
+                }
+            });
+        },
+
+        initNavigation: function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('nav a');
+
+            if (navLinks.length === 0) {
+                console.warn('No navigation links found.');
+                return;
+            }
+
+            // Add active class style
+            const style = document.createElement('style');
+            style.textContent = `
+                nav a.active {
+                    background-color: rgba(139, 92, 246, 0.1);
+                    color: var(--accent);
+                    box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
+                    transform: translateY(-2px);
+                    text-shadow: 0 0 5px var(--accent);
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Set active link based on current section
+            const setActiveNavLink = () => {
+                // Get current scroll position
+                const scrollPosition = window.scrollY;
+
+                // Get all sections
+                const sections = document.querySelectorAll('section');
+
+                // Find the current section
+                let currentSection = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100; // Offset for better UX
+                    const sectionHeight = section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                // Update active link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+
+                    const href = link.getAttribute('href');
+                    if (href && href.substring(1) === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            // Add scroll event listener
+            window.addEventListener('scroll', setActiveNavLink);
+
+            // Set active link on page load
+            setActiveNavLink();
+
+            // Add click event to smooth scroll and set active
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+
+                        // Update active link
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+        }
+        },
+
 
         initAccordion: function() {
             const accordionHeaders = document.querySelectorAll('.accordion-header');
@@ -976,6 +1135,272 @@ const TaxFilingApp = (function() {
 
             // Scroll to bottom
             helperMessages.scrollTop = helperMessages.scrollHeight;
+        },
+
+        initAutoFillOptions: function() {
+            // Get auto-fill option elements
+            const autoFillIRS = document.getElementById('autoFillIRS');
+            const autoFillTaxReturn = document.getElementById('autoFillTaxReturn');
+            const autoFillManual = document.getElementById('autoFillManual');
+            const autoFillOptions = document.querySelectorAll('.auto-fill-option');
+
+            if (!autoFillIRS || !autoFillTaxReturn || !autoFillManual) {
+                console.warn('Auto-fill options not found.');
+                return;
+            }
+
+            // Add selected class to style
+            const style = document.createElement('style');
+            style.textContent = `
+                .auto-fill-option.selected {
+                    border: 2px solid var(--accent);
+                    background-color: rgba(139, 92, 246, 0.05);
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add click event listeners
+            autoFillIRS.addEventListener('click', () => {
+                // Remove selected class from all options
+                autoFillOptions.forEach(option => option.classList.remove('selected'));
+
+                // Add selected class to clicked option
+                autoFillIRS.classList.add('selected');
+
+                // Show IRS connection modal
+                this.showIRSConnectionModal();
+            });
+
+            autoFillTaxReturn.addEventListener('click', () => {
+                // Remove selected class from all options
+                autoFillOptions.forEach(option => option.classList.remove('selected'));
+
+                // Add selected class to clicked option
+                autoFillTaxReturn.classList.add('selected');
+
+                // Show tax return upload modal
+                this.showTaxReturnUploadModal();
+            });
+
+            autoFillManual.addEventListener('click', () => {
+                // Remove selected class from all options
+                autoFillOptions.forEach(option => option.classList.remove('selected'));
+
+                // Add selected class to clicked option
+                autoFillManual.classList.add('selected');
+
+                // Just continue with manual entry
+                console.log('Manual entry selected');
+            });
+
+            console.log('Auto-fill options initialized successfully!');
+        },
+
+        showIRSConnectionModal: function() {
+            // Create modal for IRS connection
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-file-invoice-dollar"></i> Connect to IRS Account</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Securely connect to your IRS online account to import your information. This will speed up your filing process by automatically filling in your:</p>
+                        <ul>
+                            <li>Personal information</li>
+                            <li>Filing status</li>
+                            <li>Dependent information</li>
+                            <li>Previous stimulus payment records</li>
+                        </ul>
+                        <div class="form-group">
+                            <label for="irsUsername">IRS Account Username</label>
+                            <input type="text" id="irsUsername" class="form-control" placeholder="Enter your IRS username">
+                        </div>
+                        <div class="form-group">
+                            <label for="irsPassword">IRS Account Password</label>
+                            <input type="password" id="irsPassword" class="form-control" placeholder="Enter your IRS password">
+                        </div>
+                        <div class="alert alert-info">
+                            <div class="alert-icon"><i class="fas fa-info-circle"></i></div>
+                            <div class="alert-content">
+                                <p>Don't have an IRS account? <a href="https://www.irs.gov/payments/view-your-tax-account" target="_blank">Create one here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary modal-close">Cancel</button>
+                        <button class="btn btn-primary" id="connectIRSBtn">Connect Account</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Add event listeners
+            const closeButtons = modal.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+            });
+
+            // Connect button
+            const connectButton = modal.querySelector('#connectIRSBtn');
+            connectButton.addEventListener('click', () => {
+                // Show loading state
+                connectButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...';
+                connectButton.disabled = true;
+
+                // Simulate connection (in a real app, this would be an API call)
+                setTimeout(() => {
+                    // Remove modal
+                    document.body.removeChild(modal);
+
+                    // Show success message
+                    this.showAutoFillSuccessMessage('IRS account');
+
+                    // Auto-fill form fields (simulated)
+                    this.autoFillFormFields();
+                }, 2000);
+            });
+
+            // Close on click outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+        },
+
+        showTaxReturnUploadModal: function() {
+            // Create modal for tax return upload
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-file-alt"></i> Upload 2020 Tax Return</h3>
+                        <button class="modal-close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Upload your 2020 tax return to extract your information. This will speed up your filing process by automatically filling in your:</p>
+                        <ul>
+                            <li>Personal information</li>
+                            <li>Filing status</li>
+                            <li>Dependent information</li>
+                            <li>Income details from last year</li>
+                        </ul>
+                        <div class="upload-area" id="taxReturnUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag and drop your 2020 tax return PDF here</p>
+                            <p>or</p>
+                            <button class="btn btn-secondary" id="taxReturnUploadBtn">Select File</button>
+                            <input type="file" id="taxReturnFileInput" accept=".pdf" style="display: none;">
+                        </div>
+                        <div class="alert alert-info">
+                            <div class="alert-icon"><i class="fas fa-info-circle"></i></div>
+                            <div class="alert-content">
+                                <p>We accept PDF files of Form 1040 and related schedules. Your data is securely processed and never stored.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary modal-close">Cancel</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Add event listeners
+            const closeButtons = modal.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+            });
+
+            // File upload button
+            const uploadButton = modal.querySelector('#taxReturnUploadBtn');
+            const fileInput = modal.querySelector('#taxReturnFileInput');
+
+            uploadButton.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    // Show loading state
+                    const uploadArea = modal.querySelector('#taxReturnUploadArea');
+                    uploadArea.innerHTML = `
+                        <div class="loading-spinner"></div>
+                        <p>Processing your tax return...</p>
+                    `;
+
+                    // Simulate processing (in a real app, this would be an API call)
+                    setTimeout(() => {
+                        // Remove modal
+                        document.body.removeChild(modal);
+
+                        // Show success message
+                        this.showAutoFillSuccessMessage('2020 tax return');
+
+                        // Auto-fill form fields (simulated)
+                        this.autoFillFormFields();
+                    }, 2000);
+                }
+            });
+
+            // Close on click outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+        },
+
+        showAutoFillSuccessMessage: function(source) {
+            const successAlert = document.createElement('div');
+            successAlert.className = 'alert alert-success';
+            successAlert.innerHTML = `
+                <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="alert-content">
+                    <h4 class="alert-title">Information Imported Successfully</h4>
+                    <p>We've imported your information from your ${source} and pre-filled your form fields.</p>
+                </div>
+            `;
+
+            // Find a good place to insert the alert
+            const autoFillSection = document.querySelector('.auto-fill-section');
+            if (autoFillSection) {
+                autoFillSection.appendChild(successAlert);
+
+                // Remove after 5 seconds
+                setTimeout(() => {
+                    if (autoFillSection.contains(successAlert)) {
+                        autoFillSection.removeChild(successAlert);
+                    }
+                }, 5000);
+            }
+        },
+
+        autoFillFormFields: function() {
+            // Simulate auto-filling form fields with sample data
+            document.getElementById('fullName').value = 'John Q. Taxpayer';
+            document.getElementById('ssn').value = '123-45-6789';
+            document.getElementById('filingStatusTax').value = 'single';
+            document.getElementById('phoneNumber').value = '(555) 123-4567';
+
+            // Trigger input events to update validation
+            ['fullName', 'ssn', 'filingStatusTax', 'phoneNumber'].forEach(id => {
+                const input = document.getElementById(id);
+                const event = new Event('input', { bubbles: true });
+                input.dispatchEvent(event);
+            });
         },
 
         handleHelperResponse: function(message) {

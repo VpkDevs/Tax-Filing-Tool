@@ -8,7 +8,7 @@ import TaxWalkthrough from './modules/walkthrough.js';
 import MicroSteps from './modules/micro-steps.js';
 
 // These modules may not exist yet, so we'll handle them conditionally
-let VirtualAssistant, DocumentAnalyzer, Calculator, TimeEstimates;
+let VirtualAssistant, DocumentAnalyzer, Calculator, TimeEstimates, DataStorage, FormValidator, TaxLogic, AutoFill, ClaimProcessTracker;
 
 // Dynamically import modules if they exist
 try {
@@ -39,6 +39,43 @@ try {
             TimeEstimates.init();
         }
     }).catch(() => console.log('Time Estimates module not available'));
+
+    // Import our core modules
+    import('./core/dataStorage.js').then(module => {
+        DataStorage = module.default || window.DataStorage;
+        if (typeof DataStorage !== 'undefined' && document.readyState === 'complete') {
+            DataStorage.init();
+        }
+    }).catch(() => console.log('Data Storage module not available'));
+
+    import('./core/formValidator.js').then(module => {
+        FormValidator = module.default || window.FormValidator;
+        if (typeof FormValidator !== 'undefined' && document.readyState === 'complete') {
+            FormValidator.init();
+        }
+    }).catch(() => console.log('Form Validator module not available'));
+
+    import('./core/taxLogic.js').then(module => {
+        TaxLogic = module.default || window.TaxLogic;
+        if (typeof TaxLogic !== 'undefined' && document.readyState === 'complete') {
+            TaxLogic.init();
+        }
+    }).catch(() => console.log('Tax Logic module not available'));
+
+    // Import our feature modules
+    import('./features/autoFill.js').then(module => {
+        AutoFill = module.default || window.AutoFill;
+        if (typeof AutoFill !== 'undefined' && document.readyState === 'complete') {
+            AutoFill.init();
+        }
+    }).catch(() => console.log('Auto Fill module not available'));
+
+    import('./features/claimProcessTracker.js').then(module => {
+        ClaimProcessTracker = module.default || window.ClaimProcessTracker;
+        if (typeof ClaimProcessTracker !== 'undefined' && document.readyState === 'complete') {
+            ClaimProcessTracker.init();
+        }
+    }).catch(() => console.log('Claim Process Tracker module not available'));
 } catch (e) {
     console.log('Error loading modules:', e);
 }
@@ -76,6 +113,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof TimeEstimates !== 'undefined') {
         console.log('Initializing time estimates module...');
         TimeEstimates.init();
+    }
+
+    // Initialize our core modules
+    if (typeof DataStorage !== 'undefined') {
+        console.log('Initializing data storage module...');
+        DataStorage.init();
+    }
+    if (typeof FormValidator !== 'undefined') {
+        console.log('Initializing form validator module...');
+        FormValidator.init();
+    }
+    if (typeof TaxLogic !== 'undefined') {
+        console.log('Initializing tax logic module...');
+        TaxLogic.init();
+    }
+
+    // Initialize our feature modules
+    if (typeof AutoFill !== 'undefined') {
+        console.log('Initializing auto fill module...');
+        AutoFill.init();
+    }
+    if (typeof ClaimProcessTracker !== 'undefined') {
+        console.log('Initializing claim process tracker module...');
+        ClaimProcessTracker.init();
     }
 
     // Dark mode toggle

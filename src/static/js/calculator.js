@@ -225,7 +225,7 @@ const calculatorGuides = {
                 useCase: 'Savings accounts, investments'
             },
             intermediate: {
-                description: 'Your money grows faster because you earn interest not just on your initial investment, but also on all the interest you've previously earned',
+                description: 'Your money grows faster because you earn interest not just on your initial investment, but also on all the interest you\'ve previously earned',
                 formula: {
                     breakdown: [
                         'P = Your starting money (Principal)',
@@ -340,7 +340,7 @@ const calculatorGuides = {
         },
         example: 'roi(1500, 1000)',
         useCase: 'Use for: Evaluating investment performance, comparing investment options',
-        tip: 'Higher ROI doesn't always mean better - consider risk and time period'
+        tip: 'Higher ROI doesn\'t always mean better - consider risk and time period'
     },
     // Add entries for all financial functions...
 };
