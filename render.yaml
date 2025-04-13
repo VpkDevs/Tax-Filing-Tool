@@ -1,10 +1,19 @@
 services:
   - type: web
     name: tax-filing-tool
-    env: python
+    runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn src.main_app:app
+    preDeployCommand: python pre_deploy.py
+    startCommand: gunicorn wsgi:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.0
     autoDeploy: true
+    buildFilter:
+      ignoredPaths:
+        - "README.md"
+        - "DEPLOYMENT.md"
+        - "LICENSE"
+        - ".gitignore"
+        - "tests/**"
+        - "docs/**"

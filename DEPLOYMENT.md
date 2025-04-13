@@ -42,7 +42,7 @@ Render will automatically detect the `render.yaml` configuration file in your re
 - **Region**: Choose the region closest to your users
 - **Branch**: main (or your deployment branch)
 - **Build Command**: `pip install -r requirements.txt`
-- **Start Command**: `gunicorn src.main_app:app`
+- **Start Command**: `gunicorn --chdir src app:app`
 - **Plan**: Free
 
 ### 5. Environment Variables
