@@ -38,9 +38,8 @@ def server_error(error):
     logger.error(f'Server error: {str(error)}')
     return render_template('500.html'), 500
 
-# Create database tables
-@app.before_first_request
-def create_tables():
+# Create database tables (Flask 2.2+ compatibility)
+with app.app_context():
     db.create_all()
     logger.info('Database tables created')
 

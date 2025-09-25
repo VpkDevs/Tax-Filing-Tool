@@ -10,6 +10,10 @@ import RebateCalculator from './modules/rebate-calculator.js';
 import ProgressTracker from './modules/progress-tracker.js';
 import DocumentAnalyzer from './modules/document-analyzer.js';
 import VirtualAssistant from './modules/virtual-assistant.js';
+import RealTimeTaxCalculator from './modules/real-time-calculator.js';
+import DocumentProcessor from './modules/document-processor.js';
+import ValidationEngine from './modules/validation-engine.js';
+import ProgressManager from './modules/progress-manager.js';
 
 // Main application
 const TaxFilingApp = (function() {
@@ -265,27 +269,100 @@ const TaxFilingApp = (function() {
     // Public methods
     return {
         init: function() {
+            // Initialize enhanced modules
+            RealTimeTaxCalculator.init();
+            DocumentProcessor.init();
+            ValidationEngine.init();
+            ProgressManager.init();
+
             // Initialize progress tracker
             ProgressTracker.init(5); // 5 total steps in the filing process
 
-            // Initialize modules
+            // Initialize existing modules
             TaxWalkthrough.init('walkthrough-container');
             TaxForms.generateFormLibrary('forms-library-container');
             RebateCalculator.initCalculator('calculator-form', 'calculator-result');
 
-            // Initialize document analyzer for step 2
-            DocumentAnalyzer.initDocumentUploader('document-upload-area', 'document-preview-area', (result) => {
+            // Initialize enhanced document analyzer
+            DocumentProcessor.processDocument = DocumentProcessor.processDocument || DocumentAnalyzer.initDocumentUploader;
+            
+            DocumentAnalyzer.initDocumentUploader('document-upload-area', 'document-preview-area', async (result) => {
                 console.log('Document analyzed:', result);
-                // Store document data for use in the filing process
-                ProgressTracker.saveData('documentData', result);
+                
+                // Use enhanced document processor if available
+                try {
+                    const enhancedResult = await DocumentProcessor.processDocument(result.file, {
+                        autoFill: true,
+                        formSelector: '.tax-form'
+                    });
+                    
+                    // Store enhanced document data
+                    ProgressTracker.saveData('documentData', enhancedResult);
+                    ProgressManager.updateStepProgress(2, { documentData: enhancedResult });
+                    
+                    // Show enhanced success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'alert alert-success enhanced';
+                    successMessage.innerHTML = `
+                        <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="alert-content">
+                            <h4 class="alert-title">Document Processed Successfully</h4>
+                            <p>We've extracted ${Object.keys(enhancedResult.extractedData || {}).length} fields from your document and auto-filled your form.</p>
+                            <div class="confidence-meter">
+                                <div class="confidence-bar" style="width: ${enhancedResult.validations?.confidence || 100}%"></div>
+                                <span>Confidence: ${enhancedResult.validations?.confidence || 100}%</span>
+                            </div>
+                            ${enhancedResult.filledFields?.length > 0 ? 
+                                `<p><strong>Auto-filled:</strong> ${enhancedResult.filledFields.map(f => f.field).join(', ')}</p>` : 
+                                ''
+                            }
+                        </div>
+                    `;
+                    
+                    const uploadArea = document.getElementById('document-upload-area');
+                    if (uploadArea) {
+                        uploadArea.parentNode.insertBefore(successMessage, uploadArea.nextSibling);
+                        
+                        // Auto-hide after 10 seconds
+                        setTimeout(() => {
+                            successMessage.classList.add('fade-out');
+                            setTimeout(() => successMessage.remove(), 300);
+                        }, 10000);
+                    }
+                    
+                    // Trigger real-time calculation update if form was filled
+                    if (enhancedResult.filledFields?.length > 0) {
+                        this.updateRealTimeCalculations();
+                    }
+                    
+                } catch (error) {
+                    console.error('Enhanced document processing failed, falling back to basic:', error);
+                    // Fallback to original behavior
+                    ProgressTracker.saveData('documentData', result);
+                }
+            });
 
-                // Show success message
-                const successMessage = document.createElement('div');
-                successMessage.className = 'alert alert-success';
-                successMessage.innerHTML = `
-                    <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="alert-content">
-                        <h4 class="alert-title">Document Added Successfully</h4>
+            // Set up real-time tax calculations
+            this.setupRealTimeCalculations();
+            
+            // Set up enhanced validation
+            this.setupEnhancedValidation();
+            
+            // Load saved progress
+            this.loadSavedProgress();
+
+            // Initialize virtual helper
+            this.initVirtualHelper();
+
+            // Load saved form data
+            loadFormData();
+
+            // Add modern theme stylesheet
+            const modernTheme = document.createElement('link');
+            modernTheme.rel = 'stylesheet';
+            modernTheme.href = '/static/css/modern-theme.css';
+            document.head.appendChild(modernTheme);
+        },
                         <p>We've extracted the information from your ${result.documentName} and added it to your return.</p>
                     </div>
                 `;
@@ -796,6 +873,373 @@ const TaxFilingApp = (function() {
 
             // Scroll to bottom
             helperMessages.scrollTop = helperMessages.scrollHeight;
+        },
+
+        },
+
+        // Setup real-time tax calculations
+        setupRealTimeCalculations: function() {
+            // Add calculation listener
+            RealTimeTaxCalculator.addListener((calculations) => {
+                this.updateTaxSummaryDisplay(calculations);
+            });
+
+            // Set up form listeners for real-time updates
+            const taxForm = document.querySelector('.tax-form');
+            if (taxForm) {
+                const inputs = taxForm.querySelectorAll('input[type="number"], input[name*="wages"], input[name*="income"], select');
+                
+                inputs.forEach(input => {
+                    input.addEventListener('input', () => {
+                        this.updateRealTimeCalculations();
+                    });
+                });
+            }
+        },
+
+        // Update real-time calculations
+        updateRealTimeCalculations: function() {
+            const formData = this.collectTaxData();
+            RealTimeTaxCalculator.updateData(formData);
+        },
+
+        // Collect tax data from forms
+        collectTaxData: function() {
+            const data = {};
+            
+            // Collect basic tax information
+            const wagesInput = document.querySelector('[name="wages"], #wages');
+            if (wagesInput && wagesInput.value) {
+                data.wages = parseFloat(wagesInput.value) || 0;
+            }
+
+            const filingStatusSelect = document.querySelector('[name="filingStatus"], #filingStatusTax');
+            if (filingStatusSelect && filingStatusSelect.value) {
+                data.filingStatus = filingStatusSelect.value;
+            }
+
+            const dependentsInput = document.querySelector('[name="dependents"], #dependents');
+            if (dependentsInput && dependentsInput.value) {
+                data.dependents = parseInt(dependentsInput.value) || 0;
+            }
+
+            const withholdingInput = document.querySelector('[name="federalTaxWithheld"], [name="withholdings"]');
+            if (withholdingInput && withholdingInput.value) {
+                data.withholdings = parseFloat(withholdingInput.value) || 0;
+            }
+
+            const otherIncomeInput = document.querySelector('[name="otherIncome"]');
+            if (otherIncomeInput && otherIncomeInput.value) {
+                data.otherIncome = parseFloat(otherIncomeInput.value) || 0;
+            }
+
+            const adjustmentsInput = document.querySelector('[name="adjustments"]');
+            if (adjustmentsInput && adjustmentsInput.value) {
+                data.adjustments = parseFloat(adjustmentsInput.value) || 0;
+            }
+
+            const itemizedDeductionsInput = document.querySelector('[name="itemizedDeductions"]');
+            if (itemizedDeductionsInput && itemizedDeductionsInput.value) {
+                data.itemizedDeductions = parseFloat(itemizedDeductionsInput.value) || 0;
+            }
+
+            return data;
+        },
+
+        // Update tax summary display
+        updateTaxSummaryDisplay: function(calculations) {
+            // Create or update tax summary section
+            let summarySection = document.querySelector('.tax-summary');
+            if (!summarySection) {
+                summarySection = document.createElement('div');
+                summarySection.className = 'tax-summary';
+                
+                // Insert after the first form or at the end of the main content
+                const insertTarget = document.querySelector('.tax-form') || document.querySelector('main');
+                if (insertTarget) {
+                    insertTarget.parentNode.insertBefore(summarySection, insertTarget.nextSibling);
+                }
+            }
+
+            summarySection.innerHTML = `
+                <div class="tax-summary-header">
+                    <h3><i class="fas fa-calculator"></i> Live Tax Calculation</h3>
+                    <div class="calculation-timestamp">Updated: ${new Date().toLocaleTimeString()}</div>
+                </div>
+                
+                <div class="tax-summary-grid">
+                    <div class="summary-item">
+                        <div class="summary-label">Adjusted Gross Income</div>
+                        <div class="summary-value">${calculations.formatted.agi}</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Taxable Income</div>
+                        <div class="summary-value">${calculations.formatted.taxableIncome}</div>
+                    </div>
+                    
+                    <div class="summary-item highlight">
+                        <div class="summary-label">Federal Tax</div>
+                        <div class="summary-value">${calculations.formatted.federalTax}</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div class="summary-label">Total Credits</div>
+                        <div class="summary-value">${calculations.formatted.totalCredits}</div>
+                    </div>
+                    
+                    <div class="summary-item ${calculations.refundOrOwe >= 0 ? 'refund' : 'owe'}">
+                        <div class="summary-label">${calculations.formatted.refundOrOweLabel}</div>
+                        <div class="summary-value">${calculations.formatted.refundOrOwe}</div>
+                    </div>
+                    
+                    <div class="summary-item rates">
+                        <div class="summary-label">Tax Rates</div>
+                        <div class="summary-value">
+                            <small>Effective: ${calculations.effectiveRate.toFixed(1)}%</small><br>
+                            <small>Marginal: ${calculations.marginalRate.toFixed(1)}%</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tax-summary-actions">
+                    <button type="button" class="btn btn-secondary" onclick="TaxFilingApp.showDetailedCalculation()">
+                        <i class="fas fa-chart-line"></i> View Details
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="TaxFilingApp.getOptimizationSuggestions()">
+                        <i class="fas fa-lightbulb"></i> Optimize Tax
+                    </button>
+                </div>
+            `;
+
+            // Add visual feedback for changes
+            summarySection.classList.add('updated');
+            setTimeout(() => summarySection.classList.remove('updated'), 500);
+        },
+
+        // Setup enhanced validation
+        setupEnhancedValidation: function() {
+            // Enable real-time validation on all forms
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                ValidationEngine.enableRealTimeValidation(form);
+            });
+
+            // Add validation listener
+            ValidationEngine.addListener((validationResults) => {
+                this.handleValidationResults(validationResults);
+            });
+        },
+
+        // Handle validation results
+        handleValidationResults: function(results) {
+            // Update step validation status
+            const currentStepEl = document.querySelector(`.step-${currentFilingStep}`);
+            if (currentStepEl) {
+                currentStepEl.classList.toggle('has-errors', !results.isValid);
+                currentStepEl.classList.toggle('has-warnings', results.summary.totalWarnings > 0);
+            }
+
+            // Store validation results for later use
+            ProgressManager.updateStepProgress(currentFilingStep, { 
+                validationResults: results 
+            });
+        },
+
+        // Load saved progress
+        loadSavedProgress: function() {
+            const session = ProgressManager.loadSession();
+            if (session) {
+                console.log('Loaded saved session:', session);
+                
+                // Update current step
+                if (session.currentStep) {
+                    currentFilingStep = session.currentStep;
+                    this.showStep(currentFilingStep);
+                }
+
+                // Show restore notification
+                setTimeout(() => {
+                    const notification = document.createElement('div');
+                    notification.className = 'restore-notification';
+                    notification.innerHTML = `
+                        <div class="notification-content">
+                            <i class="fas fa-history"></i>
+                            <div class="notification-text">
+                                <strong>Welcome back!</strong>
+                                <p>We've restored your progress from ${new Date(session.lastModified).toLocaleDateString()}</p>
+                            </div>
+                            <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    // Auto-hide after 8 seconds
+                    setTimeout(() => {
+                        notification.classList.add('fade-out');
+                        setTimeout(() => notification.remove(), 300);
+                    }, 8000);
+                }, 1000);
+            } else {
+                // Start new session
+                ProgressManager.startSession({
+                    userAgent: navigator.userAgent,
+                    startUrl: window.location.href
+                });
+            }
+        },
+
+        // Show step helper
+        showStep: function(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('[id^="filingStep"]').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show target step
+            const targetStep = document.getElementById(`filingStep${stepNumber}`);
+            if (targetStep) {
+                targetStep.classList.add('active');
+                this.updateStepIndicators();
+            }
+        },
+
+        // Show detailed calculation breakdown
+        showDetailedCalculation: function() {
+            const calculations = RealTimeTaxCalculator.recalculate();
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal modal-detailed-calc';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Detailed Tax Calculation</h3>
+                        <button type="button" class="btn-close" onclick="this.closest('.modal').remove()">×</button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="calc-breakdown">
+                            <div class="calc-section">
+                                <h4>Income Calculation</h4>
+                                <div class="calc-line">
+                                    <span>Total Wages</span>
+                                    <span>${calculations.formatted.wages || '$0'}</span>
+                                </div>
+                                <div class="calc-line">
+                                    <span>Other Income</span>
+                                    <span>${calculations.formatted.otherIncome || '$0'}</span>
+                                </div>
+                                <div class="calc-line">
+                                    <span>Less: Adjustments</span>
+                                    <span>(${calculations.formatted.adjustments || '$0'})</span>
+                                </div>
+                                <div class="calc-line total">
+                                    <span>Adjusted Gross Income</span>
+                                    <span>${calculations.formatted.agi}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="calc-section">
+                                <h4>Tax Calculation</h4>
+                                <div class="calc-line">
+                                    <span>Adjusted Gross Income</span>
+                                    <span>${calculations.formatted.agi}</span>
+                                </div>
+                                <div class="calc-line">
+                                    <span>Less: Deductions</span>
+                                    <span>(${calculations.formatted.deductions || '$0'})</span>
+                                </div>
+                                <div class="calc-line">
+                                    <span>Taxable Income</span>
+                                    <span>${calculations.formatted.taxableIncome}</span>
+                                </div>
+                                <div class="calc-line">
+                                    <span>Federal Tax</span>
+                                    <span>${calculations.formatted.federalTax}</span>
+                                </div>
+                                <div class="calc-line">
+                                    <span>Less: Credits</span>
+                                    <span>(${calculations.formatted.totalCredits})</span>
+                                </div>
+                                <div class="calc-line total">
+                                    <span>Tax After Credits</span>
+                                    <span>${calculations.formatted.taxAfterCredits}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="calc-section final">
+                                <h4>Final Result</h4>
+                                <div class="calc-line">
+                                    <span>Tax After Credits</span>
+                                    <span>${calculations.formatted.taxAfterCredits}</span>
+                                </div>
+                                <div class="calc-line">
+                                    <span>Less: Withholdings</span>
+                                    <span>(${calculations.formatted.withholdings})</span>
+                                </div>
+                                <div class="calc-line total ${calculations.refundOrOwe >= 0 ? 'refund' : 'owe'}">
+                                    <span>${calculations.formatted.refundOrOweLabel}</span>
+                                    <span>${calculations.formatted.refundOrOwe}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        },
+
+        // Get and show optimization suggestions
+        getOptimizationSuggestions: function() {
+            const suggestions = RealTimeTaxCalculator.getOptimizationSuggestions();
+            
+            if (suggestions.length === 0) {
+                alert('Great! Your tax return is already optimized.');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal modal-optimization';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-lightbulb"></i> Tax Optimization Suggestions</h3>
+                        <button type="button" class="btn-close" onclick="this.closest('.modal').remove()">×</button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <p>Here are some ways to potentially improve your tax situation:</p>
+                        
+                        <div class="suggestions-list">
+                            ${suggestions.map(suggestion => `
+                                <div class="suggestion-item priority-${suggestion.priority}">
+                                    <div class="suggestion-header">
+                                        <i class="fas fa-${suggestion.type === 'deduction' ? 'receipt' : 'award'}"></i>
+                                        <h4>${suggestion.title}</h4>
+                                        <span class="priority-badge">${suggestion.priority}</span>
+                                    </div>
+                                    <p>${suggestion.description}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="modal-actions">
+                            <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="TaxFilingApp.applyOptimizations()">Apply Suggestions</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        },
+
+        // Apply optimization suggestions (placeholder)
+        applyOptimizations: function() {
+            alert('Optimization suggestions would be applied here in a full implementation.');
+            document.querySelector('.modal-optimization').remove();
         },
 
         handleHelperResponse: function(message) {
