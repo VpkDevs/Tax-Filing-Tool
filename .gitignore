@@ -14,3 +14,10 @@ __pycache__/
 venv/
 .cache/
 *.tmp
+
+# appended by publish script
+.env.*
+!.env.example
+out/
+.turbo/
+.pytest_cache/
